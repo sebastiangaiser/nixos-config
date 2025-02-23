@@ -291,7 +291,7 @@
     kscreenlocker = {
       autoLock = true;
       lockOnResume = true;
-      timeout = 10;
+      timeout = 5;
       passwordRequired = true;
       passwordRequiredDelay = 5;
       lockOnStartup = false;
@@ -299,6 +299,27 @@
         alwaysShowClock = true;
         showMediaControls = true;
 	wallpaper = "/home/sebastian/nixos-config/images/nixos-wallpaper-catppuccin-mocha.png";
+      };
+    };
+
+    powerdevil = {
+      AC = {
+        powerButtonAction = "lockScreen";
+	autoSuspend = {
+          action = "shutDown";
+          idleTimeout = 1000;
+        };
+        turnOffDisplay = {
+          idleTimeout = 1000;
+          idleTimeoutWhenLocked = "immediately";
+        };
+      };
+      battery = {
+        powerButtonAction = "sleep";
+        whenSleepingEnter = "standbyThenHibernate";
+      };
+      lowBattery = {
+        whenLaptopLidClosed = "hibernate";
       };
     };
 
