@@ -1,12 +1,80 @@
 {
   "nodes": {
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1739757849,
+        "narHash": "sha256-Gs076ot1YuAAsYVcyidLKUMIc4ooOaRGO0PqTY7sBzA=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "9d3d080aec2a35e05a15cedd281c2384767c2cfe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-24.11",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1740089251,
+        "narHash": "sha256-Y78mDBWoO8CLLTjQfPfII+KXFb6lAmF9GrLbyVBsIMM=",
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "rev": "18e9f9753e9ae261bcc7d3abe15745686991fd30",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1738142207,
-        "narHash": "sha256-NGqpVVxNAHwIicXpgaVqJEJWeyqzoQJ9oc8lnK9+WC4=",
+        "lastModified": 1739923778,
+        "narHash": "sha256-BqUY8tz0AQ4to2Z4+uaKczh81zsGZSYxjgvtw+fvIfM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "36864ed72f234b9540da4cf7a0c49e351d30d3f1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-master": {
+      "locked": {
+        "lastModified": 1740231585,
+        "narHash": "sha256-ybJ20Qrwy7DehV9rPkVekGlMiCeYgjfl3ArVwuPOixM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9d3ae807ebd2981d593cddd0080856873139aa40",
+        "rev": "00266d92665706645e97d9c7b5a6911bcb52c521",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1739866667,
+        "narHash": "sha256-EO1ygNKZlsAC9avfcwHkKGMsmipUk1Uc0TbrEZpkn64=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "73cf49b8ad837ade2de76f87eb53fc85ed5d4680",
         "type": "github"
       },
       "original": {
@@ -16,9 +84,72 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1731763621,
+        "narHash": "sha256-ddcX4lQL0X05AYkrkV2LMFgGdRvgap7Ho8kgon3iWZk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c69a9bffbecde46b4b939465422ddc59493d3e4d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "plasma-manager": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1739557722,
+        "narHash": "sha256-XikzLpPUDYiNyJ4w2SfRShdbSkIgE3btYdxCGInmtc4=",
+        "owner": "nix-community",
+        "repo": "plasma-manager",
+        "rev": "1f3e1f38dedbbb8aad77e184fb54ec518e2d9522",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "plasma-manager",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "home-manager": "home-manager",
+        "nixos-hardware": "nixos-hardware",
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "plasma-manager": "plasma-manager",
+        "sops-nix": "sops-nix"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1739262228,
+        "narHash": "sha256-7JAGezJ0Dn5qIyA2+T4Dt/xQgAbhCglh6lzCekTVMeU=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "07af005bb7d60c7f118d9d9f5530485da5d1e975",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "type": "github"
       }
     }
   },

@@ -14,11 +14,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-be6524c4-b59e-4990-bb41-35adc113b6f6".device = "/dev/disk/by-uuid/be6524c4-b59e-4990-bb41-35adc113b6f6";
-  networking.hostName = "nixos"; # Define your hostname.
+  boot.initrd.luks.devices."luks-08fc6e5f-fa73-469c-81c5-e68d7b34cdfd".device = "/dev/disk/by-uuid/08fc6e5f-fa73-469c-81c5-e68d7b34cdfd";
+  networking.hostName = "nixos"; #"dell-xps13"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -67,8 +66,9 @@
   # Enable bluetooth
   hardware.bluetooth.enable = true;
 
+
   # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -87,62 +87,47 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users = {
-    defaultUserShell = pkgs.zsh;
-    users.sebastian = {
-      isNormalUser = true;
-      description = "Sebastian";
-      useDefaultShell = true;
-      extraGroups = [ "networkmanager" "wheel" ];
-      packages = with pkgs; [
-        kdePackages.kate  
-      ];
-    };
+  users.users.sebastian = {
+    isNormalUser = true;
+    description = "Sebastian";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [
+      kdePackages.kate
+      thunderbird
+    ];
+    shell = pkgs.zsh;
   };
 
   # Install firefox.
   programs.firefox.enable = true;
 
+  programs.zsh.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    curl
-    lf
-    thunderbird
-    neovim
-    nano
-    sops
-    age
-    ansible
-    kubectl
-    kubectl-neat
-    helm
-    fluxcd
     git
-    git-lfs
-    hcloud
-    openvpn
+    neovim
     htop
-    jq
-    yq
-    ruby
-    #unstable.tmate
     ghostty
-    tmux
-    signal-desktop
-    direnv
-    spotify
-    jetbrains.goland
   ];
 
-  # Global environment variables
-  environment.variables = {
-    EDITOR = "nvim";
+  environment.variables.EDITOR = "vim";
+
+  system.autoUpgrade = {
+    enable = true;
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -152,56 +137,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-  programs = {
-    mtr.enable = true;
-    gnupg.agent.enable = true;
-    git = {
-      enable = true;
-      lfs.enable = true;
-      #extraConfig = {
-       # push = { autoSetupRemote = true; };
-      #};
-        #user.name = "Sebastian Gaiser";
-        #user.email = "sebastiangaiser@users.noreply.github.com";
-      #};
-    };
-    zsh = {
-      enable = true;
-      autosuggestions.enable = true;
-      enableCompletion = true;
-      #history = {
-        #save = 100000000;
-	#saveNoDups = false;
-        #size = 1000000;
-	#historySubstringSearch = {
-	#  enable = true;
-	#};
-      ohMyZsh = {
-        enable = true;
-        #extraConfig = ""; # zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa2 id_github
-	theme = "robbyrussell";
-	plugins = [
-          "git"
-	   "golang"
-	   "kind"
-	   "kubectl"
-	   "kubectx"
-	   "pip"
-	   "podman"
-	   "ssh"
-	   "ssh.agent"
-	   "tailscale"
-	   "tmux"
-	];
-      };
-      shellAliases = {
-        kx = "kubectx";
-      };
-      syntaxHighlighting = {
-        enable = true;
-      };
-    };
-  };
 
   # List services that you want to enable:
 
