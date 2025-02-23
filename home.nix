@@ -90,6 +90,8 @@
     firefox-wayland
     google-chrome
     k9s
+    materia-kde-theme
+    kdePackages.oxygen
   ];
 
   programs.git = {
@@ -147,16 +149,16 @@
 
     workspace = {
       clickItemTo = "select";
-      colorScheme = "BreezeDark";
+      colorScheme = "MateriaDark";
       lookAndFeel = "org.kde.breezedark.desktop";
-      cursor.theme = "breeze_cursors";
-      #lookAndFeel = "org.kde.breeze.desktop";
-      #theme = "breeze-dark";
-      #colorScheme = "BreezeDark";
-      #cursor.theme = "Breeze";
-      #iconTheme = "Breeze"; #"Papirus";
+      cursor.theme = "Oxygen_White";
+      theme = "Materia";
       iconTheme = "Papirus-Dark";
-      wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Mountain/contents/images_dark/5120x2880.png";
+      wallpaper = "/home/sebastian/nixos-config/images/nixos-wallpaper-catppuccin-mocha.png";
+      soundTheme = "ocean";
+      splashScreen = {
+        theme = "None";
+      };
     };
 
     windows = {
@@ -296,6 +298,7 @@
       appearance = {
         alwaysShowClock = true;
         showMediaControls = true;
+	wallpaper = "/home/sebastian/nixos-config/images/nixos-wallpaper-catppuccin-mocha.png";
       };
     };
 
