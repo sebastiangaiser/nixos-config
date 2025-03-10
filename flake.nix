@@ -2,7 +2,6 @@
   description = "NixOS configuration flake";
 
   inputs = {
-    # NixOS official package source, using the nixos-24.11 branch here
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
@@ -42,8 +41,8 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.sebastian = {
-                imports = [ ./home.nix ];
-              };
+              imports = [ ./home.nix ];
+            };
 
 	          home-manager.sharedModules = [ 
               plasma-manager.homeManagerModules.plasma-manager 

@@ -1,10 +1,8 @@
-{ 
-  config, 
-  pkgs,
-  ... 
-}:
+{ config, pkgs, lib, ... }:{
+  imports = [
+    ./modules/direnv.nix
+  ];
 
-{
   home.username = "sebastian";
   home.homeDirectory = "/home/sebastian";
 
@@ -62,6 +60,8 @@
     kubectl-neat
     kubectl-cnpg
     kubectl-validate
+    kubectx
+    kubelogin-oidc
     krew
     helm
     fluxcd
@@ -80,13 +80,41 @@
     kdePackages.oxygen
     talosctl
     rocketchat-desktop
+    ksshaskpass
   ];
 
   programs.git = {
     enable = true;
     lfs.enable = true;
     userName = "Sebastian Gaiser";
-    userEmail = "sebastiangaiser@users.noreply.github.com";
+    userEmail = lib.mkDefault "sebastiangaiser@users.noreply.github.com";
+    attributes = [
+      "**/*.sops.yaml diff=sopsdiffer"
+    ];
+    ignores = [
+      ".vscode/"
+      ".idea/"
+      ".env"
+      ".envrc"
+      "shell.nix"
+      "*.iml"
+    ];
+
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
+      push = {
+        autoSetupRemote = true;
+      };
+      tag = {
+        sort = "version:refname";
+      };
+      diff = {
+        # sops.textconv = "${pkgs.sops}/bin/sops -d --config /dev/null";
+      };
+    };
+
   };
 
   programs.ghostty = {
@@ -307,6 +335,7 @@
           }
 	        "org.kde.plasma.userswitcher"
           #{
+          # TODO add user icon...
           #  userSwitcher = {
           #  };
           #}
@@ -352,7 +381,7 @@
     };
 
     kwin = {
-      edgeBarrier = 0; # Disables the edge-barriers introduced in plasma 6.1
+      edgeBarrier = 0;
       cornerBarrier = false;
       nightLight = {
         enable = true;
@@ -414,17 +443,6 @@
       };
     };
   };
-
-  # This value determines the home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update home Manager without changing this value. See
-  # the home Manager release notes for a list of state version
-  # changes in each release.
   home.stateVersion = "24.11";
-
-  # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
