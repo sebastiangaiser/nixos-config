@@ -15,6 +15,8 @@
   home.packages = with pkgs; [
     age
     ansible
+    bitwarden-cli
+    bitwarden-desktop
     btop
     cilium-cli
     cmctl
