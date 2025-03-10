@@ -35,16 +35,19 @@
       dell-xps13 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          nixos-hardware.nixosModules.dell-xps-13-7390
           ./configuration.nix
 
 	        home-manager.nixosModules.home-manager{
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.users.sebastian = {
+                imports = [ ./home.nix ];
+              };
+
 	          home-manager.sharedModules = [ 
               plasma-manager.homeManagerModules.plasma-manager 
             ];
-
-            home-manager.users.sebastian = import ./home.nix;
           }
         ];
       };
