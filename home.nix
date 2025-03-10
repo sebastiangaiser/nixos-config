@@ -71,13 +71,18 @@
     pciutils # lspci
     usbutils # lsusb
 
+    cilium-cli
     curl
+    cmctl
     lf
     sops
     age
     ansible
     kubectl
     kubectl-neat
+    kubectl-cnpg
+    kubectl-validate
+    krew
     helm
     fluxcd
     hcloud
@@ -92,6 +97,7 @@
     k9s
     materia-kde-theme
     kdePackages.oxygen
+    talosctl
   ];
 
   programs.git = {
@@ -99,6 +105,15 @@
     lfs.enable = true;
     userName = "Sebastian Gaiser";
     userEmail = "sebastiangaiser@users.noreply.github.com";
+  };
+
+  programs.ghostty = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      font-family = "JetBrains Mono";
+      font-size = 10;
+    };
   };
 
   programs.zsh = {
@@ -109,8 +124,8 @@
     shellAliases = {
       k = "kubectl";
       kx = "kubectx";
-      rebuild = "sudo nixos-rebuild switch && show-changes";
-      update = "nix flake update --flake ~/NyxOS --impure && rebuild";
+      rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#dell-xps13 && show-changes";
+      update = "nix flake update --flake ~/nixos-config#dell-xps13 --impure && rebuild";
       cleanup = "sudo nix store optimise && sudo nix-collect-garbage -d";
       pm-reset = "rm ~/.local/share/plasma-manager/last_run_* && ~/.local/share/plasma-manager/run_all.sh";
       pm-rebuild = "rebuild && pm-reset";
@@ -121,14 +136,13 @@
       enable = true;
       plugins = [
         "git"
-	"golang"
-	"kind"
-	"kubectl"
-	"kubectx"
-	"pip"
-	"podman"
-	"ssh"
-	"tailscale"
+        "golang"
+        "kind"
+        "kubectl"
+        "kubectx"
+        "pip"
+        "ssh"
+        "tailscale"
         "tmux"
       ];
       theme = "robbyrussell";
@@ -137,6 +151,85 @@
 
   programs.vscode = {
     enable = true;
+    #profiles.sebastian.userSettings = {
+      #"files.autoSave" = "off";
+      # "[nix]"."editor.tabSize" = 2;
+    #};
+  };
+
+  programs.k9s = {
+    enable = true;
+    aliases = {
+      aliases = {
+        dp = "deployments";
+        sec = "v1/secrets";
+        jo = "jobs";
+        cr = "clusterroles";
+        crb = "clusterrolebindings";
+        ro = "roles";
+        rb = "rolebindings";
+        np = "networkpolicies";
+        rmqu = "users.rabbitmq.com";
+        rmqv = "vhosts.rabbitmq.com";
+        rmqq = "queues.rabbitmq.com";
+        rmqpo = "policies.rabbitmq.com";
+        rmqpe = "permissions.rabbit.com";
+      };
+    };
+    plugin = {
+      plugins = {
+        # cert-manager
+        cert-status = {
+          shortCut = "Shift-S";
+          confirm = false;
+          description = "Certificate status";
+          scopes = [ "certificates" ];
+          command = "bash";
+          background = false;
+          args = [
+            "-c"
+            "cmctl status certificate --context $CONTEXT -n $NAMESPACE $NAME |& less"
+          ];
+        };
+        cert-renew = {
+          shortCut = "Shift-R";
+          confirm = false;
+          description = "Certificate renew";
+          scopes = [ "certificates" ];
+          command = "bash";
+          background = false;
+          args = [
+            "-c"
+            "cmctl renew --context $CONTEXT -n $NAMESPACE $NAME |& less"
+          ];
+        };
+        secret-inspect = {
+          shortCut = "Shift-I";
+          confirm = false;
+          description = "Inspect secret";
+          scopes = [ "secrets" ];
+          command = "bash";
+          background = false;
+          args = [
+            "-c"
+            "cmctl inspect secret --context $CONTEXT -n $NAMESPACE $NAME |& less"
+          ];
+        };
+      };
+    };
+    settings = {
+      skipLatestRevCheck = true;
+    };
+    skins = {};
+    views = {};
+  };
+
+  programs.tmux = {
+    enable = true;
+    clock24 = true;
+    keyMode = "vi";
+    mouse = true;
+    #shell = ${pkgs.zsh}/bin/zsh;
   };
 
   programs.plasma = {
@@ -159,6 +252,10 @@
       splashScreen = {
         theme = "None";
       };
+      windowDecorations = {
+        library = "org.kde.kwin.aurorae";
+	      theme = "__aurorae__svg__MateriaDark";
+      };
     };
 
     windows = {
@@ -175,60 +272,60 @@
       {
         location = "top";
         height = 24;
-	floating = false;
+	      floating = false;
         screen = "all";
         widgets = [
-	  {
+          {
             kickoff = {
               sortAlphabetically = true;
               icon = "nix-snowflake-white";
             };
           }
-	  "org.kde.plasma.appmenu"
-	  "org.kde.plasma.panelspacer"
-	  "org.kde.plasma.systemmonitor.diskusage"
-	  "org.kde.plasma.systemmonitor.memory"
-	  "org.kde.plasma.systemmonitor.cpucore"
-	  {
+          "org.kde.plasma.appmenu"
+          "org.kde.plasma.panelspacer"
+          "org.kde.plasma.systemmonitor.diskusage"
+          "org.kde.plasma.systemmonitor.memory"
+          "org.kde.plasma.systemmonitor.cpucore"
+	        {
             systemTray = {
-	      items = {
-	        showAll = false;
+              items = {
+                showAll = false;
                 shown = [
-		  "org.kde.plasma.volume"
+                  "org.kde.plasma.volume"
                   "org.kde.plasma.battery"
                   "org.kde.plasma.bluetooth"
                   "org.kde.plasma.networkmanagement"
-		  "org.kde.plasma.brighness"
+                  "org.kde.plasma.brighness"
                   "org.kde.plasma.displays"
                   "org.kde.plasma.mediacontroller"
                   "org.kde.plasma.notifications"
                   "org.kde.plasma.removabledevices"
-		  "org.kde.plasma.weather"
+                  "org.kde.plasma.weather"
                 ];
-	      };
+              };
             };
           }
-	  {
+	        {
             digitalClock = {
               calendar = {
-	        showWeekNumbers = true;
-	        firstDayOfWeek = "monday";
-	      };
+	              showWeekNumbers = true;
+	              firstDayOfWeek = "monday";
+              };
               time = {
-	        showSeconds = "onlyInTooltip";
-	        format = "24h";
-	      };
-	      date = {
+	              showSeconds = "onlyInTooltip";
+	              format = "24h";
+              };
+	            date = {
                 enable = true;
                 position = "belowTime";
               };
             };
           }
-	  "org.kde.plasma.userswitcher"
-	  #{
-	  #  userSwitcher = {
-	  #  };
-	  #}
+	        "org.kde.plasma.userswitcher"
+          #{
+          #  userSwitcher = {
+          #  };
+          #}
           {
             name = "org.kde.plasma.lock_logout";
             config.General = {
@@ -241,8 +338,8 @@
               showSuspend = false;
               showHibernate = false;
             };
-	  }
-	];
+          }
+	      ];
       }
     ];
 
@@ -298,14 +395,14 @@
       appearance = {
         alwaysShowClock = true;
         showMediaControls = true;
-	wallpaper = "/home/sebastian/nixos-config/images/nixos-wallpaper-catppuccin-mocha.png";
+	      wallpaper = "/home/sebastian/nixos-config/images/nixos-wallpaper-catppuccin-mocha.png";
       };
     };
 
     powerdevil = {
       AC = {
         powerButtonAction = "lockScreen";
-	autoSuspend = {
+	      autoSuspend = {
           action = "shutDown";
           idleTimeout = 1000;
         };
