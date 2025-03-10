@@ -1,10 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }:{
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -101,8 +95,8 @@
     shell = pkgs.zsh;
   };
 
-  # Install firefox.
   programs.firefox.enable = true;
+  programs.thunderbird.enable = true;
 
   programs.zsh.enable = true;
 
@@ -121,7 +115,7 @@
     ghostty
   ];
 
-  environment.variables.EDITOR = "vim";
+  environment.variables.EDITOR = "nvim";
 
   system.autoUpgrade = {
     enable = true;

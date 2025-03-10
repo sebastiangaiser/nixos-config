@@ -89,6 +89,7 @@
     openvpn
     tmux
     signal-desktop
+    telegram-desktop
     direnv
     spotify
     jetbrains.goland
@@ -98,6 +99,7 @@
     materia-kde-theme
     kdePackages.oxygen
     talosctl
+    rocketchat-desktop
   ];
 
   programs.git = {
@@ -444,4 +446,3 @@
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
-
