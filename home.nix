@@ -81,6 +81,7 @@
     talosctl
     rocketchat-desktop
     ksshaskpass
+    # zsh-powerlevel10k
   ];
 
   programs.git = {
@@ -141,6 +142,7 @@
       pm-rebuild = "rebuild && pm-reset";
       show-changes = "nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)";
     };
+    #promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     history.size = 100000000;
     oh-my-zsh = {
       enable = true;
@@ -155,7 +157,7 @@
         "tailscale"
         "tmux"
       ];
-      theme = "robbyrussell";
+      theme = "powerlevel10k";
     };
   };
 
