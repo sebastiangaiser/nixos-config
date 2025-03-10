@@ -13,74 +13,74 @@
   };
 
   home.packages = with pkgs; [
-    zip
-    xz
-    unzip
-    ripgrep
-    jq
-    yq-go
-    eza
-    fzf
-    mtr
-    iperf3
-    dnsutils
-    ldns
-    socat
-    nmap
-    ipcalc
-    cowsay
-    file
-    which
-    tree
-    gnused
-    gnutar
-    gawk
-    zstd
-    gnupg
-    nix-output-monitor
-    btop
-    iotop
-    iftop
-    strace
-    ltrace
-    lsof
-    sysstat
-    lm_sensors
-    ethtool
-    pciutils
-    usbutils
-    cilium-cli
-    curl
-    cmctl
-    lf
-    sops
     age
     ansible
+    btop
+    cilium-cli
+    cmctl
+    cowsay
+    curl
+    direnv
+    dnsutils
+    ethtool
+    eza
+    file
+    firefox-wayland
+    fluxcd
+    fzf
+    gawk
+    gnupg
+    gnused
+    gnutar
+    google-chrome
+    hcloud
+    helm
+    iftop
+    iotop
+    ipcalc
+    iperf3
+    jetbrains.goland
+    jq
+    k9s
+    kdePackages.oxygen
+    krew
+    ksshaskpass
     kubectl
-    kubectl-neat
     kubectl-cnpg
+    kubectl-neat
     kubectl-validate
     kubectx
     kubelogin-oidc
-    krew
-    helm
-    fluxcd
-    hcloud
-    openvpn
-    tmux
-    signal-desktop
-    telegram-desktop
-    direnv
-    spotify
-    jetbrains.goland
-    firefox-wayland
-    google-chrome
-    k9s
+    ldns
+    lf
+    lm_sensors
+    lsof
+    ltrace
     materia-kde-theme
-    kdePackages.oxygen
-    talosctl
+    mtr
+    nix-output-monitor
+    nmap
+    openvpn
+    pciutils
+    ripgrep
     rocketchat-desktop
-    ksshaskpass
+    signal-desktop
+    socat
+    sops
+    spotify
+    strace
+    sysstat
+    talosctl
+    telegram-desktop
+    tmux
+    tree
+    unzip
+    usbutils
+    which
+    xz
+    yq-go
+    zip
+    zstd
   ];
 
   programs.git = {
