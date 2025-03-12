@@ -13,6 +13,13 @@
   };
 
   home.packages = with pkgs; [
+    (pkgs.wrapHelm pkgs.kubernetes-helm {
+      plugins = with pkgs.kubernetes-helmPlugins; [
+        helm-diff
+        helm-secrets
+        helm-s3
+      ];
+    })
     age
     ansible
     bitwarden-cli
@@ -36,7 +43,6 @@
     gnutar
     google-chrome
     hcloud
-    helm
     iftop
     iotop
     ipcalc
@@ -74,6 +80,7 @@
     sysstat
     talosctl
     telegram-desktop
+    tmate
     tmux
     tree
     unzip
