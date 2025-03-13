@@ -51,7 +51,6 @@
     jq
     k9s
     kdePackages.oxygen
-    krew
     ksshaskpass
     kubectl
     kubectl-cnpg
@@ -59,6 +58,7 @@
     kubectl-validate
     kubectx
     kubelogin-oidc
+    kyverno
     ldns
     lf
     lm_sensors
@@ -144,7 +144,7 @@
       k = "kubectl";
       kx = "kubectx";
       rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#dell-xps13 && show-changes";
-      update = "nix flake update --flake ~/nixos-config#dell-xps13 --impure && rebuild";
+      update = "nix flake update --flake ~/nixos-config --impure && rebuild";
       cleanup = "sudo nix store optimise && sudo nix-collect-garbage -d";
       pm-reset = "rm ~/.local/share/plasma-manager/last_run_* && ~/.local/share/plasma-manager/run_all.sh";
       pm-rebuild = "rebuild && pm-reset";
