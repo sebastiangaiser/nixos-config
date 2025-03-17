@@ -240,6 +240,13 @@
     };
     settings = {
       skipLatestRevCheck = true;
+      k9s = {
+        logger = {
+          tail = 1000;
+          buffer = 100000;
+          sinceSeconds = -1;
+        };
+      };
     };
     skins = {};
     views = {};
