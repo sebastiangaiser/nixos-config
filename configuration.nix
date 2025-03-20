@@ -2,6 +2,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./configuration/container.nix
     ];
 
   # Bootloader.
@@ -52,6 +53,9 @@
   # Enable bluetooth
   hardware.bluetooth.enable = true;
 
+  services.fwupd = {
+    enable = true;
+  };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
