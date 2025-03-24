@@ -2,11 +2,11 @@
   description = "NixOS configuration flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url          = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    nixos-hardware.url = "github:nixos/nixos-hardware";
-    sops-nix.url = "github:Mic92/sops-nix";
+    nixpkgs-master.url   = "github:nixos/nixpkgs/master";
+    nixos-hardware.url   = "github:nixos/nixos-hardware";
+    sops-nix.url         = "github:Mic92/sops-nix";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
