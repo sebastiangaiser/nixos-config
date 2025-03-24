@@ -79,6 +79,7 @@
     nmap
     openvpn
     pciutils
+    pre-commit
     ripgrep
     rocketchat-desktop
     signal-desktop

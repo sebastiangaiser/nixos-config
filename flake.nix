@@ -19,16 +19,16 @@
     };
   };
 
-  outputs = inputs@{ 
-    self, 
-    nixpkgs, 
-    nixpkgs-unstable, 
-    nixpkgs-master, 
+  outputs = inputs@{
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    nixpkgs-master,
     sops-nix,
     plasma-manager,
-    home-manager, 
-    nixos-hardware, 
-    ... 
+    home-manager,
+    nixos-hardware,
+    ...
   }: {
     nixosConfigurations = {
       dell-xps13 = nixpkgs.lib.nixosSystem {
@@ -44,8 +44,8 @@
               imports = [ ./home.nix ];
             };
 
-	          home-manager.sharedModules = [ 
-              plasma-manager.homeManagerModules.plasma-manager 
+	          home-manager.sharedModules = [
+              plasma-manager.homeManagerModules.plasma-manager
             ];
           }
         ];
@@ -53,4 +53,3 @@
     };
   };
 }
-

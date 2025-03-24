@@ -18,7 +18,7 @@ ssh-keygen -t ed25519
 
 - Upload the key to Github
 
-2. Clone the config 
+2. Clone the config
 
 ```shell
 git clone git@github.com:sebastiangaiser/nixos-config.git ~/nixos-config
@@ -27,4 +27,3 @@ git clone git@github.com:sebastiangaiser/nixos-config.git ~/nixos-config
 3. Rebuild the configuration using the rebuild command
 
 4. Remove the short-term ssh-key from Github
-
