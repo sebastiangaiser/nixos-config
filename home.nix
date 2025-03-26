@@ -54,6 +54,7 @@
     iotop
     ipcalc
     iperf3
+    iw
     jetbrains.goland
     jq
     k9s
