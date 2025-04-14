@@ -78,6 +78,7 @@
     mtr
     nix-output-monitor
     nmap
+    nvd
     openvpn
     pciutils
     pre-commit
