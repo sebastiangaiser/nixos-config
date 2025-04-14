@@ -29,7 +29,7 @@
         "tailscale"
         "tmux"
       ];
-      theme = "robbyrussell";
+      theme = "spaceship";
     };
   };
 }

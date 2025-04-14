@@ -86,6 +86,7 @@
     signal-desktop
     socat
     sops
+    spaceship-prompt
     spotify
     strace
     sysstat
@@ -100,6 +101,7 @@
     xz
     yq-go
     yubikey-manager
+    yubikey-manager-qt
     zip
     zstd
   ];
