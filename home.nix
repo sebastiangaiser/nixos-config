@@ -99,6 +99,7 @@
     which
     xz
     yq-go
+    yubikey-manager
     zip
     zstd
   ];
