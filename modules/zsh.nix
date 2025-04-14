@@ -29,7 +29,7 @@
         "tailscale"
         "tmux"
       ];
-      theme = "spaceship";
+      theme = "linuxonly";
     };
   };
 }
