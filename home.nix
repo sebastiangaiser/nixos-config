@@ -86,7 +86,6 @@
     signal-desktop
     socat
     sops
-    spaceship-prompt
     spotify
     strace
     sysstat
@@ -103,6 +102,7 @@
     yubikey-manager
     yubikey-manager-qt
     zip
+    zsh-powerlevel10k
     zstd
   ];
 

@@ -2,9 +2,37 @@
 {
   programs.zsh = {
     enable = true;
+
+    # relative to ~
+    dotDir = ".config/zsh";
     enableCompletion = true;
-    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    autocd = true;
+    autosuggestion.enable = true;
+    history.size = 100000000;
+    history.share = true;
+    plugins = [
+      {
+        name = "powerlevel10k-config";
+        src = ./p10k;
+        file = "p10k.zsh";
+      }
+      {
+        name = "zsh-powerlevel10k";
+        src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/";
+        file = "powerlevel10k.zsh-theme";
+      }
+    ];
+
+    initExtraFirst = ''
+      # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+      # Initialization code that may require console input (password prompts, [y/n]
+      # confirmations, etc.) must go above this block; everything else may go below.
+      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+      fi
+    '';
+
     shellAliases = {
       k = "kubectl";
       kx = "kubectx";
@@ -15,7 +43,6 @@
       pm-rebuild = "rebuild && pm-reset";
       show-changes = "nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)";
     };
-    history.size = 100000000;
     oh-my-zsh = {
       enable = true;
       plugins = [
@@ -29,7 +56,10 @@
         "tailscale"
         "tmux"
       ];
-      theme = "linuxonly";
+      extraConfig = ''
+        # Display red dots whilst waiting for completion.
+        COMPLETION_WAITING_DOTS="true"
+      '';
     };
   };
 }
