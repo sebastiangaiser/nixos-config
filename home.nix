@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:{
   imports = [
+    ./modules/bat.nix
     ./modules/direnv.nix
+    ./modules/fonts.nix
     ./modules/ghostty.nix
     ./modules/git.nix
     ./modules/k9s.nix
@@ -29,6 +31,7 @@
     })
     age
     ansible
+    bats
     bitwarden-cli
     bitwarden-desktop
     btop
