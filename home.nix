@@ -30,7 +30,6 @@
       ];
     })
     age
-    ansible
     bats
     bitwarden-cli
     bitwarden-desktop

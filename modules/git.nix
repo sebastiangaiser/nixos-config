@@ -17,6 +17,13 @@
       "*.iml"
     ];
 
+    includes = [{
+      condition = "gitdir:~/github.com/**";
+      contents = {
+        user.email = "sebastiangaiser@users.noreply.github.com";
+      };
+    }];
+
     extraConfig = {
       init = {
         defaultBranch = "main";
@@ -28,7 +35,7 @@
         sort = "version:refname";
       };
       diff = {
-        # sops.textconv = "${pkgs.sops}/bin/sops -d --config /dev/null";
+        sopsdiffer.textconv = "${pkgs.sops}/bin/sops -d --config /dev/null";
       };
     };
   };
