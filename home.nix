@@ -81,6 +81,7 @@
     nix-output-monitor
     nmap
     nvd
+    openssl
     openvpn
     pciutils
     pre-commit
