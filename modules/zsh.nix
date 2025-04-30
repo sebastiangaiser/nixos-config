@@ -9,8 +9,11 @@
     syntaxHighlighting.enable = true;
     autocd = true;
     autosuggestion.enable = true;
-    history.size = 100000000;
-    history.share = true;
+    history = {
+      expireDuplicatesFirst = true;
+      share = true;
+      size = 100000000;
+    };
     plugins = [
       {
         name = "powerlevel10k-config";

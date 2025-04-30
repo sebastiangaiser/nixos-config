@@ -14,7 +14,10 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   boot.loader.systemd-boot.configurationLimit = 10;
-  nix.settings.auto-optimise-store = true;
+  nix.settings = {
+    auto-optimise-store = true;
+    download-buffer-size = 524288000;
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
