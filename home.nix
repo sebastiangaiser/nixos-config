@@ -47,9 +47,11 @@
     fluxcd
     fzf
     gawk
+    gcc
     gnupg
     gnused
     gnutar
+    go
     google-chrome
     hcloud
     iftop
@@ -73,6 +75,7 @@
     #unstable.kyverno
     ldns
     lf
+    libcap
     lm_sensors
     lsof
     ltrace
