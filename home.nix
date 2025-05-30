@@ -40,6 +40,7 @@
     curl
     direnv
     dnsutils
+    envsubst
     ethtool
     eza
     file
