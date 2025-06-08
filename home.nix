@@ -89,6 +89,7 @@
     openvpn
     pciutils
     pre-commit
+    pv-migrate
     ripgrep
     rocketchat-desktop
     signal-desktop
