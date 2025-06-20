@@ -64,7 +64,7 @@
     jq
     k9s
     kdePackages.oxygen
-    ksshaskpass
+    kdePackages.ksshaskpass
     kubectl
     kubectl-cnpg
     kubectl-neat
@@ -109,12 +109,12 @@
     xz
     yq-go
     yubikey-manager
-    yubikey-manager-qt
+    yubioath-flutter
     zip
     zsh-powerlevel10k
     zstd
   ];
 
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
   programs.home-manager.enable = true;
 }

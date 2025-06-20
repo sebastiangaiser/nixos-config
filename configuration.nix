@@ -61,7 +61,7 @@
   };
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -116,5 +116,5 @@
     enableSSHSupport = true;
   };
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }
