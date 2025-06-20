@@ -21,6 +21,28 @@
     };
     plugin = {
       plugins = {
+        # remove-finalizers
+        remove-finalizers = {
+          shortCut = "Shift-D";
+          confirm = true;
+          dangerous = true;
+          description = "Removes all finalizers from selected resource. Be careful when using it, it may leave dangling resources or delete them";
+          scopes = [ "all" ];
+          command = "kubectl";
+          background = true;
+          args = [
+            "patch"
+            "--context"
+            "$CONTEXT"
+            "--namespace"
+            "$NAMESPACE"
+            "$RESOURCE_NAME.$RESOURCE_GROUP"
+            "$NAME"
+            "-p {'metadata':{'finalizers':null}}"
+            "--type"
+            "merge"
+          ];
+        };
         # cert-manager
         cert-status = {
           shortCut = "Shift-S";
@@ -56,6 +78,73 @@
           args = [
             "-c"
             "cmctl inspect secret --context $CONTEXT -n $NAMESPACE $NAME |& less"
+          ];
+        };
+        # terraform-controller
+        reconcile-terraform = {
+          shortCut = "Shift-C";
+          confirm = false;
+          description = "Re_c_oncile a Terraform";
+          scopes = [ "terraforms" ];
+          command = "tfctl";
+          background = true;
+          args = [
+            "reconcile"
+            "--request-timeout"
+            "1s"
+            "--context"
+            "$CONTEXT"
+            "--namespace"
+            "$NAMESPACE"
+            "$NAME"
+          ];
+        };
+        resume-terraform = {
+          shortCut = "Shift-R";
+          confirm = false;
+          description = "Resume a Terraform";
+          scopes = [ "terraforms" ];
+          command = "tfctl";
+          background = true;
+          args = [
+            "resume"
+            "--request-timeout"
+            "1s"
+            "--context"
+            "$CONTEXT"
+            "--namespace"
+            "$NAMESPACE"
+            "$NAME"
+          ];
+        };
+        suspend-terraform = {
+          shortCut = "Shift-S";
+          confirm = false;
+          description = "Suspend a Terraform";
+          scopes = [ "terraforms" ];
+          command = "tfctl";
+          background = true;
+          args = [
+            "suspend"
+            "--request-timeout"
+            "1s"
+            "--context"
+            "$CONTEXT"
+            "--namespace"
+            "$NAMESPACE"
+            "$NAME"
+          ];
+        };
+        break-glass-terraform = {
+          shortCut = "Shift-B";
+          confirm = true;
+          description = "BREAK GLASS Terraform";
+          scopes = [ "terraforms" ];
+          command = "bash";
+          background = false;
+          args = [
+            "-c"
+            "tfctl break-glass --context $CONTEXT --namespace $NAMESPACE $NAME ; sleep infinity"
           ];
         };
       };
