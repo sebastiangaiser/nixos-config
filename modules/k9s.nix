@@ -147,6 +147,194 @@
             "tfctl break-glass --context $CONTEXT --namespace $NAMESPACE $NAME ; sleep infinity"
           ];
         };
+        # gitrepository
+        reconcile-gitrepository = {
+          shortCut = "Shift-C";
+          confirm = false;
+          description = "Re_c_oncile a GitRepository";
+          scopes = [ "gitrepositories" ];
+          command = "flux";
+          background = true;
+          args = [
+            "reconcile"
+            "--timeout"
+            "1s"
+            "source"
+            "git"
+            "--context"
+            "$CONTEXT"
+            "--namespace"
+            "$NAMESPACE"
+            "$NAME"
+          ];
+        };
+        resume-gitrepository = {
+          shortCut = "Shift-R";
+          confirm = false;
+          description = "Resume a GitRepository";
+          scopes = [ "gitrepositories" ];
+          command = "flux";
+          background = true;
+          args = [
+            "resume"
+            "--timeout"
+            "1s"
+            "source"
+            "git"
+            "--context"
+            "$CONTEXT"
+            "--namespace"
+            "$NAMESPACE"
+            "$NAME"
+          ];
+        };
+        suspend-gitrepository = {
+          shortCut = "Shift-S";
+          confirm = false;
+          description = "Suspend a GitRepository";
+          scopes = [ "gitrepositories" ];
+          command = "flux";
+          background = true;
+          args = [
+            "suspend"
+            "--timeout"
+            "1s"
+            "source"
+            "git"
+            "--context"
+            "$CONTEXT"
+            "--namespace"
+            "$NAMESPACE"
+            "$NAME"
+          ];
+        };
+        # helmrelease
+        reconcile-helmrelease = {
+          shortCut = "Shift-C";
+          confirm = false;
+          description = "Re_c_oncile a HelmRelease";
+          scopes = [ "helmreleases" ];
+          command = "flux";
+          background = true;
+          args = [
+            "reconcile"
+            "--timeout"
+            "1s"
+            "--with-source"
+            "helmrelease"
+            "--context"
+            "$CONTEXT"
+            "--namespace"
+            "$NAMESPACE"
+            "$NAME"
+          ];
+        };
+        resume-helmrelease = {
+          shortCut = "Shift-R";
+          confirm = false;
+          description = "Resume a HelmRelease";
+          scopes = [ "helmreleases" ];
+          command = "flux";
+          background = true;
+          args = [
+            "resume"
+            "--timeout"
+            "1s"
+            "helmrelease"
+            "--context"
+            "$CONTEXT"
+            "--namespace"
+            "$NAMESPACE"
+            "$NAME"
+          ];
+        };
+        suspend-helmrelease = {
+          shortCut = "Shift-S";
+          confirm = false;
+          description = "Suspend a HelmRelease";
+          scopes = [ "helmreleases" ];
+          command = "flux";
+          background = true;
+          args = [
+            "suspend"
+            "helmrelease"
+            "--context"
+            "$CONTEXT"
+            "--namespace"
+            "$NAMESPACE"
+            "$NAME"
+          ];
+        };
+        # kustomization
+        reconcile-kustomization = {
+          shortCut = "Shift-C";
+          confirm = false;
+          description = "Re_c_oncile a Kustomization";
+          scopes = [ "kustomizations" ];
+          command = "flux";
+          background = true;
+          args = [
+            "reconcile"
+            "--timeout"
+            "1s"
+            "--with-source"
+            "Kustomization"
+            "--context"
+            "$CONTEXT"
+            "--namespace"
+            "$NAMESPACE"
+            "$NAME"
+          ];
+        };
+        resume-kustomization = {
+          shortCut = "Shift-R";
+          confirm = false;
+          description = "Resume a Kustomization";
+          scopes = [ "kustomizations" ];
+          command = "flux";
+          background = true;
+          args = [
+            "resume"
+            "--timeout"
+            "1s"
+            "kustomization"
+            "--context"
+            "$CONTEXT"
+            "--namespace"
+            "$NAMESPACE"
+            "$NAME"
+          ];
+        };
+        suspend-kustomization = {
+          shortCut = "Shift-S";
+          confirm = false;
+          description = "Suspend a Kustomization";
+          scopes = [ "kustomizations" ];
+          command = "flux";
+          background = true;
+          args = [
+            "suspend"
+            "kustomization"
+            "--context"
+            "$CONTEXT"
+            "--namespace"
+            "$NAMESPACE"
+            "$NAME"
+          ];
+        };
+        # flux-trace
+        flux-trace = {
+          shortCut = "Shift-T";
+          confirm = false;
+          description = "Flux trace";
+          scopes = [ "all" ];
+          command = "sh";
+          background = true;
+          args = [
+            "-c"
+            "flux --context $CONTEXT trace $NAME --kind `echo $RESOURCE_NAME | sed -E 's/(s)$//g'` --api-version $RESOURCE_GROUP/$RESOURCE_VERSION --namespace $NAMESPACE $NAME | less"
+          ];
+        };
       };
     };
     settings = {
