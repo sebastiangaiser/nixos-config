@@ -95,7 +95,6 @@
     vim
     wget
     git
-    neovim
     htop
     ghostty
   ];

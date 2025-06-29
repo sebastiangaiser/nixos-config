@@ -54,19 +54,33 @@
     oh-my-zsh = {
       enable = true;
       plugins = [
+        "fancy-ctrl-z" # Ctrl-z
+        "fluxcd"
         "git"
+        "git-auto-fetch"
         "golang"
+        "helm"
+        "history" # hs
         "kind"
         "kubectl"
         "kubectx"
         "pip"
         "ssh"
+        "ssh-agent"
         "tailscale"
         "tmux"
       ];
       extraConfig = ''
         # Display red dots whilst waiting for completion.
         COMPLETION_WAITING_DOTS="true"
+
+        # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/ssh-agent/README.md
+        zstyle :omz:plugins:ssh-agent agent-forwarding yes
+        # maybe use `zstyle :omz:plugins:ssh-agent helper ksshaskpass` or extract the PW from Bitwarden?
+        zstyle :omz:plugins:ssh-agent lifetime 12h
+        zstyle :omz:plugins:ssh-agent quiet yes
+        zstyle :omz:plugins:ssh-agent lazy yes
+
       '';
     };
   };

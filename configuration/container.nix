@@ -2,6 +2,13 @@
 
   virtualisation = {
     docker = {
+      autoPrune = {
+        dates = "weekly";
+        flags = [
+          "--all"
+          "--volumes"
+        ];
+      };
       enable = false;
       storageDriver = "btrfs";
       rootless = {
