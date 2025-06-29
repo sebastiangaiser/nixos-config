@@ -31,10 +31,10 @@
     ...
   }: {
     nixosConfigurations = {
-      dell-xps13 = nixpkgs.lib.nixosSystem {
+      framework13 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          nixos-hardware.nixosModules.dell-xps-13-7390
+          nixos-hardware.nixosModules.framework-amd-ai-300-series
           ./configuration.nix
 
 	        home-manager.nixosModules.home-manager{

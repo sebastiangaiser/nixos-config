@@ -4,7 +4,7 @@ WiP: I started learning Nix and NixOS a few weeks ago. So the configuration and 
 
 ## Commands
 
-Rebuild: `sudo nixos-rebuild switch --flake ~/nixos-config#dell-xps13`
+Rebuild: `sudo nixos-rebuild switch --flake ~/nixos-config#framework13`
 
 ## Setup from scratch
 

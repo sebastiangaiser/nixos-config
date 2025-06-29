@@ -12,7 +12,7 @@
     history = {
       expireDuplicatesFirst = true;
       share = true;
-      size = 100000000;
+      size = 1000000000;
     };
     plugins = [
       {
@@ -37,9 +37,14 @@
     '';
 
     shellAliases = {
+      cat = "bat";
       k = "kubectl";
       kx = "kubectx";
-      rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#dell-xps13 && show-changes";
+      nfzf = "fzf --preview '\''bat --color=always --style=numbers --line-range=:500 {}'\'";
+      v = "velero";
+
+      # Nix related
+      rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#framework13 && show-changes";
       update = "nix flake update --flake ~/nixos-config --impure && rebuild";
       cleanup = "sudo nix store optimise && sudo nix-collect-garbage -d";
       pm-reset = "rm ~/.local/share/plasma-manager/last_run_* && ~/.local/share/plasma-manager/run_all.sh";

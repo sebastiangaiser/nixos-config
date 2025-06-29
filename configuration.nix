@@ -9,8 +9,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-08fc6e5f-fa73-469c-81c5-e68d7b34cdfd".device = "/dev/disk/by-uuid/08fc6e5f-fa73-469c-81c5-e68d7b34cdfd";
-  networking.hostName = "dell-xps13";
+  # Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  networking.hostName = "framework13";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   boot.loader.systemd-boot.configurationLimit = 10;

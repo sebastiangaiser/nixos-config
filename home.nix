@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:{
   imports = [
     ./modules/bat.nix
+    ./modules/chromium.nix
     ./modules/direnv.nix
     ./modules/fonts.nix
     ./modules/ghostty.nix
@@ -34,6 +35,7 @@
     bitwarden-cli
     bitwarden-desktop
     btop
+    chromium
     cilium-cli
     cmctl
     cowsay
@@ -53,7 +55,6 @@
     gnused
     gnutar
     go
-    google-chrome
     hcloud
     iftop
     iotop
@@ -63,8 +64,9 @@
     jetbrains.goland
     jq
     k9s
-    kdePackages.oxygen
     kdePackages.ksshaskpass
+    kdePackages.oxygen
+    kdePackages.plasma-browser-integration
     kubectl
     kubectl-cnpg
     kubectl-neat
@@ -72,8 +74,6 @@
     kubectx
     kubelogin-oidc
     kyverno
-    # TODO
-    #unstable.kyverno
     ldns
     lf
     libcap
@@ -87,6 +87,7 @@
     nvd
     openssl
     openvpn
+    papirus-icon-theme
     pciutils
     pre-commit
     pv-migrate
