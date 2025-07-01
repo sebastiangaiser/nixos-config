@@ -44,7 +44,7 @@
               imports = [ ./home.nix ];
             };
 
-	          home-manager.sharedModules = [
+	        home-manager.sharedModules = [
               plasma-manager.homeManagerModules.plasma-manager
             ];
           }
