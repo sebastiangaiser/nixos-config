@@ -5,6 +5,11 @@
     clock24 = true;
     keyMode = "vi";
     mouse = true;
-    #shell = ${pkgs.zsh}/bin/zsh;
+    plugins = with pkgs; [
+      {
+        plugin = tmuxPlugins.nord;
+      }
+    ];
+    shell = "${pkgs.zsh}/bin/zsh";
   };
 }
