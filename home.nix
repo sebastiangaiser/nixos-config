@@ -7,6 +7,7 @@
     ./modules/ghostty.nix
     ./modules/git.nix
     ./modules/k9s.nix
+    ./modules/kitty.nix
     ./modules/neovim.nix
     ./modules/plasma.nix
     ./modules/tmux.nix

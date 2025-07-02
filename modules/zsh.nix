@@ -80,7 +80,6 @@
         zstyle :omz:plugins:ssh-agent lifetime 12h
         zstyle :omz:plugins:ssh-agent quiet yes
         zstyle :omz:plugins:ssh-agent lazy yes
-
       '';
     };
   };
