@@ -20,6 +20,10 @@
     #   "--ignore-gpu-blocklist"
     #   "--disable-features=AutofillSavePaymentMethods"
     ];
+    dictionaries = [
+      pkgs.hunspellDictsChromium.de_DE
+      pkgs.hunspellDictsChromium.en_US
+    ];
     extensions = [
       # Bitwarden Password Manager
       # https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb
@@ -29,9 +33,9 @@
       # https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh
       "ddkjiahejlhfcafbddmgiahcphecmpfh"
 
-      # Plasma Integration
-      # https://chromewebstore.google.com/detail/plasma-integration/cimiefiiaegbelhefglklhhakcgmhkai
-      "cimiefiiaegbelhefglklhhakcgmhkai"
+    ];
+    nativeMessagingHosts =[
+      pkgs.kdePackages.plasma-browser-integration
     ];
   };
 }
