@@ -21,13 +21,27 @@
     };
     plugin = {
       plugins = {
+        # debug-container
+        debug = {
+          shortCut = "Shift-D";
+          description = "Add debug container";
+          dangerous = true;
+          scopes = [ "containers" ];
+          command = "bash";
+          background = false;
+          confirm = true;
+          args = [
+            "-c"
+            "kubectl --kubeconfig=$KUBECONFIG debug -it --context $CONTEXT -n=$NAMESPACE $POD --target=$NAME --image=ghcr.io/nicolaka/netshoot:v0.14 --share-processes -- bash"
+          ];
+        };
         # remove-finalizers
         remove-finalizers = {
           shortCut = "Shift-D";
           confirm = true;
           dangerous = true;
           description = "Removes all finalizers from selected resource. Be careful when using it, it may leave dangling resources or delete them";
-          scopes = [ "all" ];
+          scopes = [ "persistentvolumeclaimes" "namespaces" ];
           command = "kubectl";
           background = true;
           args = [
