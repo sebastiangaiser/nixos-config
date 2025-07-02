@@ -11,5 +11,6 @@
       update_check_interval = 0;
     };
     shellIntegration.enableZshIntegration = true;
+    themeFile = "Nord";
   };
 }

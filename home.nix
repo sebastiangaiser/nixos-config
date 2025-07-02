@@ -69,6 +69,8 @@
     kdePackages.ksshaskpass
     kdePackages.oxygen
     kdePackages.plasma-browser-integration
+    kitty
+    kitty-themes
     kubectl
     kubectl-cnpg
     kubectl-neat
