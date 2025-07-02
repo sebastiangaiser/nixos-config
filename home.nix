@@ -68,6 +68,7 @@
     k9s
     kdePackages.ksshaskpass
     kdePackages.oxygen
+    killall
     kitty
     kitty-themes
     kubectl
@@ -100,6 +101,7 @@
     socat
     sops
     spotify
+    stern
     strace
     sysstat
     talosctl
