@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:{
   imports = [
     ./modules/bat.nix
+    ./modules/catppuccin.nix
     ./modules/chromium.nix
     ./modules/direnv.nix
     ./modules/fonts.nix
@@ -57,6 +58,7 @@
     gnused
     gnutar
     go
+    gopls
     hcloud
     iftop
     iotop

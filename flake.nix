@@ -7,6 +7,7 @@
     nixpkgs-master.url   = "github:nixos/nixpkgs/master";
     nixos-hardware.url   = "github:nixos/nixos-hardware";
     sops-nix.url         = "github:Mic92/sops-nix";
+    catppuccin.url       = "github:catppuccin/nix";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
@@ -25,6 +26,7 @@
     nixpkgs-unstable,
     nixpkgs-master,
     sops-nix,
+    catppuccin,
     plasma-manager,
     home-manager,
     nixos-hardware,
@@ -41,7 +43,10 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.sebastian = {
-              imports = [ ./home.nix ];
+              imports = [
+                ./home.nix
+                catppuccin.homeModules.catppuccin
+              ];
             };
 
 	        home-manager.sharedModules = [

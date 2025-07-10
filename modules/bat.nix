@@ -5,7 +5,8 @@
     config = {
       # Show line numbers, Git modifications and file header (but no grid)
       style = "numbers,changes,header";
-      theme = "gruvbox-dark";
+      # Set via catppuccin.nix
+      # theme = "";
     };
     extraPackages = builtins.attrValues {
       inherit (pkgs.bat-extras)

@@ -11,6 +11,7 @@
       update_check_interval = 0;
     };
     shellIntegration.enableZshIntegration = true;
-    themeFile = "Nord";
+    # Set via catppuccin.nix
+    # themeFile = "";
   };
 }

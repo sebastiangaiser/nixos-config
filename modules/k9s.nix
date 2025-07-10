@@ -377,8 +377,24 @@
           buffer = 100000;
           sinceSeconds = -1;
         };
+        namespace = {
+          active = "all";
+          lockFavorites = true;
+          favorites = [
+            "all"
+            "monitoring"
+            "observability"
+            "kafka"
+            "cert-manager"
+            "kube-system"
+            "kyverno"
+            "logging"
+            "default"
+          ];
+        };
       };
     };
+    # Set via catppuccin.nix
     skins = {};
     views = {};
   };
