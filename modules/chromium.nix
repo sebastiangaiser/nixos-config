@@ -15,10 +15,10 @@
     #   ];
     # };
     commandLineArgs = [
-    # TODO somehow producing an error...
-    #   "--enable-logging=stderr"
-    #   "--ignore-gpu-blocklist"
-    #   "--disable-features=AutofillSavePaymentMethods"
+      # TODO somehow producing an error...
+      # "--enable-logging=stderr"
+      # "--ignore-gpu-blocklist"
+      # "--disable-features=AutofillSavePaymentMethods"
     ];
     dictionaries = [
       pkgs.hunspellDictsChromium.de_DE
@@ -34,7 +34,7 @@
       "ddkjiahejlhfcafbddmgiahcphecmpfh"
 
     ];
-    nativeMessagingHosts =[
+    nativeMessagingHosts = [
       pkgs.kdePackages.plasma-browser-integration
     ];
   };

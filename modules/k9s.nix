@@ -41,7 +41,10 @@
           confirm = true;
           dangerous = true;
           description = "Removes all finalizers from selected resource. Be careful when using it, it may leave dangling resources or delete them";
-          scopes = [ "persistentvolumeclaimes" "namespaces" ];
+          scopes = [
+            "persistentvolumeclaimes"
+            "namespaces"
+          ];
           command = "kubectl";
           background = true;
           args = [

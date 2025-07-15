@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   programs.git = {
     enable = true;
@@ -17,12 +22,14 @@
       "*.iml"
     ];
 
-    includes = [{
-      condition = "gitdir:~/github.com/**";
-      contents = {
-        user.email = "sebastiangaiser@users.noreply.github.com";
-      };
-    }];
+    includes = [
+      {
+        condition = "gitdir:~/github.com/**";
+        contents = {
+          user.email = "sebastiangaiser@users.noreply.github.com";
+        };
+      }
+    ];
 
     extraConfig = {
       init = {

@@ -1,4 +1,9 @@
-{ config, pkgs, nixpkgs-unstable, ... }:
+{
+  config,
+  pkgs,
+  nixpkgs-unstable,
+  ...
+}:
 {
   programs.vscode = {
     enable = true;

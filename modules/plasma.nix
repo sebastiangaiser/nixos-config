@@ -22,7 +22,7 @@
       };
       windowDecorations = {
         library = "org.kde.kwin.aurorae";
-	      theme = "__aurorae__svg__MateriaDark";
+        theme = "__aurorae__svg__MateriaDark";
       };
     };
 
@@ -40,7 +40,7 @@
       {
         location = "top";
         height = 24;
-	      floating = false;
+        floating = false;
         screen = "all";
         widgets = [
           {
@@ -54,7 +54,7 @@
           "org.kde.plasma.systemmonitor.diskusage"
           "org.kde.plasma.systemmonitor.memory"
           "org.kde.plasma.systemmonitor.cpucore"
-	        {
+          {
             systemTray = {
               items = {
                 showAll = false;
@@ -73,23 +73,23 @@
               };
             };
           }
-	        {
+          {
             digitalClock = {
               calendar = {
-	              showWeekNumbers = true;
-	              firstDayOfWeek = "monday";
+                showWeekNumbers = true;
+                firstDayOfWeek = "monday";
               };
               time = {
-	              showSeconds = "onlyInTooltip";
-	              format = "24h";
+                showSeconds = "onlyInTooltip";
+                format = "24h";
               };
-	            date = {
+              date = {
                 enable = true;
                 position = "belowTime";
               };
             };
           }
-	        "org.kde.plasma.userswitcher"
+          "org.kde.plasma.userswitcher"
           #{
           # TODO add user icon...
           #  userSwitcher = {
@@ -108,7 +108,7 @@
               showHibernate = false;
             };
           }
-	      ];
+        ];
       }
     ];
 
@@ -164,14 +164,14 @@
       appearance = {
         alwaysShowClock = true;
         showMediaControls = true;
-	      wallpaper = "/home/sebastian/nixos-config/images/nixos-wallpaper-catppuccin-mocha.png";
+        wallpaper = "/home/sebastian/nixos-config/images/nixos-wallpaper-catppuccin-mocha.png";
       };
     };
 
     powerdevil = {
       AC = {
         powerButtonAction = "lockScreen";
-	    autoSuspend = {
+        autoSuspend = {
           action = "shutDown";
           idleTimeout = 1000;
         };

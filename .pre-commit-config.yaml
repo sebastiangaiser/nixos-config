@@ -13,3 +13,9 @@ repos:
     rev: 3.0.0
     hooks:
       - id: shellcheck
+
+  # TODO https://github.com/NixOS/nixfmt/pull/311
+  # - repo: https://github.com/NixOS/nixfmt
+  #   rev: v1.0.0
+  #   hooks:
+  #     - id: nixfmt

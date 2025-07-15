@@ -1,4 +1,10 @@
-{ config, pkgs, lib, ... }:{
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   imports = [
     ./modules/bat.nix
     ./modules/catppuccin.nix
@@ -89,6 +95,7 @@
     materia-kde-theme
     mtr
     nix-output-monitor
+    nixfmt-rfc-style
     nmap
     nvd
     openssl

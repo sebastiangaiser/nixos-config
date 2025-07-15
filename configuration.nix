@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:{
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./configuration/container.nix
-    ];
+{ config, pkgs, ... }:
+{
+  imports = [
+    ./hardware-configuration.nix
+    ./configuration/container.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -75,7 +75,10 @@
   users.users.sebastian = {
     isNormalUser = true;
     description = "Sebastian";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       kdePackages.kate
       thunderbird
@@ -93,7 +96,10 @@
     chromium.enableWideVine = true;
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   environment.systemPackages = with pkgs; [
     vim
     wget
