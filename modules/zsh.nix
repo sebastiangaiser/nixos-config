@@ -54,10 +54,10 @@
     oh-my-zsh = {
       enable = true;
       plugins = [
+        # https://github.com/ohmyzsh/ohmyzsh/wiki/plugins
         "fancy-ctrl-z" # Ctrl-z
         "fluxcd"
         "git"
-        "git-auto-fetch"
         "golang"
         "helm"
         "history" # hs
