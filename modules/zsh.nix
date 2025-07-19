@@ -57,6 +57,7 @@
         # https://github.com/ohmyzsh/ohmyzsh/wiki/plugins
         "fancy-ctrl-z" # Ctrl-z
         "fluxcd"
+        "fzf"
         "git"
         "golang"
         "helm"
