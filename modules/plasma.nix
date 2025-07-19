@@ -195,12 +195,17 @@
     };
 
     configFile = {
-      "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
-      "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "SF";
-      "kwinrc"."Desktops"."Number" = {
-        value = 1;
-        # Forces kde to not change this value (even through the settings app).
-        immutable = true;
+      baloofilerc."Basic Settings"."Indexing-Enabled" = false;
+      # TODO enable numlock on startup not working, yet
+      # https://github.com/nix-community/plasma-manager/issues/117
+      # kcminputrc.Keyboard.NumLock.value = 0;
+      kwinrc = {
+        "org.kde.kdecoration2"."ButtonsOnLeft" = "SF";
+        "Desktops"."Number" = {
+          value = 1;
+          # Forces kde to not change this value (even through the settings app).
+          immutable = true;
+        };
       };
     };
   };
