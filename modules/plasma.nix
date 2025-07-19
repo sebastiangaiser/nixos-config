@@ -65,10 +65,15 @@
                   "org.kde.plasma.networkmanagement"
                   "org.kde.plasma.brighness"
                   "org.kde.plasma.displays"
-                  "org.kde.plasma.mediacontroller"
-                  "org.kde.plasma.notifications"
                   "org.kde.plasma.removabledevices"
                   "org.kde.plasma.weather"
+                ];
+                hidden = [
+                  "org.kde.plasma.notifications"
+                  "org.kde.plasma.clipboard"
+                  "org.kde.plasma.devicenotifier"
+                  "org.kde.plasma.mediacontroller"
+                  "plasmashell_microphone"
                 ];
               };
             };
@@ -172,7 +177,7 @@
       AC = {
         powerButtonAction = "lockScreen";
         autoSuspend = {
-          action = "shutDown";
+          action = "sleep";
           idleTimeout = 1000;
         };
         turnOffDisplay = {

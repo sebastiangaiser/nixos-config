@@ -60,6 +60,7 @@
     fzf
     gawk
     gcc
+    gnumake
     gnupg
     gnused
     gnutar
