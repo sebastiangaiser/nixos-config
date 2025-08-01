@@ -77,7 +77,7 @@
 
         # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/ssh-agent/README.md
         zstyle :omz:plugins:ssh-agent agent-forwarding yes
-        # maybe use `zstyle :omz:plugins:ssh-agent helper ksshaskpass` or extract the PW from Bitwarden?
+        zstyle :omz:plugins:ssh-agent helper ksshaskpass # or extract the PW from Bitwarden?
         zstyle :omz:plugins:ssh-agent lifetime 12h
         zstyle :omz:plugins:ssh-agent quiet yes
         zstyle :omz:plugins:ssh-agent lazy yes
