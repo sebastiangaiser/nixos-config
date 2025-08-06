@@ -71,6 +71,7 @@
     iotop
     ipcalc
     iperf3
+    ipv6calc
     iw
     jetbrains.goland
     jq
