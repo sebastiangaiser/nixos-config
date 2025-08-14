@@ -104,6 +104,7 @@
     openvpn
     papirus-icon-theme
     pciutils
+    postgresql
     pre-commit
     pv-migrate
     ripgrep
