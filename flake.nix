@@ -2,7 +2,7 @@
   description = "NixOS configuration flake";
 
   inputs = {
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.url = "github:catppuccin/nix/release-25.05";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -53,7 +53,7 @@
               };
 
               home-manager.sharedModules = [
-                plasma-manager.homeManagerModules.plasma-manager
+                plasma-manager.homeModules.plasma-manager
               ];
             }
           ];
