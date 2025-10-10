@@ -50,6 +50,7 @@
     cowsay
     curl
     direnv
+    dmidecode
     dnsutils
     envsubst
     ethtool
