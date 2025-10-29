@@ -123,6 +123,7 @@
     tmux
     tree
     unzip
+    upterm
     usbutils
     which
     xz
