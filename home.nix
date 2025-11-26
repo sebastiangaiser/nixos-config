@@ -1,4 +1,4 @@
-{
+{unstable}: {
   config,
   pkgs,
   lib,
@@ -57,7 +57,7 @@
     eza
     file
     firefox-wayland
-    fluxcd
+    unstable.fluxcd
     fzf
     gawk
     gcc

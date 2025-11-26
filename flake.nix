@@ -34,9 +34,9 @@
       ...
     }:
     {
-      nixosConfigurations = {
+      nixosConfigurations = let system = "x86_64-linux"; in{
         framework13 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system;
           modules = [
             nixos-hardware.nixosModules.framework-amd-ai-300-series
             ./configuration.nix
@@ -47,7 +47,7 @@
               home-manager.useUserPackages = true;
               home-manager.users.sebastian = {
                 imports = [
-                  ./home.nix
+                  (import ./home.nix {unstable = nixpkgs-unstable.legacyPackages.${system};})
                   catppuccin.homeModules.catppuccin
                 ];
               };
