@@ -77,6 +77,7 @@
     jetbrains.goland
     jq
     k9s
+    kdePackages.kde-cli-tools
     kdePackages.ksshaskpass
     kdePackages.oxygen
     killall

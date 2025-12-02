@@ -4,13 +4,15 @@
     enable = true;
 
     # relative to ~
-    dotDir = ".config/zsh";
+    dotDir = "${config.home.homeDirectory}/.config/zsh";
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     autocd = true;
     autosuggestion.enable = true;
     history = {
       expireDuplicatesFirst = true;
+      path = "${config.home.homeDirectory}/.config/zsh/.zsh_history";
+      saveNoDups = true;
       share = true;
       size = 1000000000;
     };
