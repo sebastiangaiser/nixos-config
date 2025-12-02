@@ -85,7 +85,7 @@
     shell = pkgs.zsh;
   };
 
-  programs.firefox.enable = true;
+  programs.firefox.enable = false;
   programs.thunderbird.enable = true;
 
   programs.zsh.enable = true;
@@ -125,5 +125,5 @@
     enableSSHSupport = true;
   };
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }

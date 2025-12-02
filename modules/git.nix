@@ -8,8 +8,24 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "Sebastian Gaiser";
-    userEmail = lib.mkDefault "sebastiangaiser@users.noreply.github.com";
+    settings = {
+      user = {
+        name = "Sebastian Gaiser";
+        email = lib.mkDefault "sebastiangaiser@users.noreply.github.com";
+      };
+      init = {
+        defaultBranch = "main";
+      };
+      push = {
+        autoSetupRemote = true;
+      };
+      tag = {
+        sort = "version:refname";
+      };
+      diff = {
+        sopsdiffer.textconv = "${pkgs.sops}/bin/sops -d --config /dev/null";
+      };
+    };
     attributes = [
       "**/*.sops.yaml diff=sopsdiffer"
     ];
@@ -30,20 +46,5 @@
         };
       }
     ];
-
-    extraConfig = {
-      init = {
-        defaultBranch = "main";
-      };
-      push = {
-        autoSetupRemote = true;
-      };
-      tag = {
-        sort = "version:refname";
-      };
-      diff = {
-        sopsdiffer.textconv = "${pkgs.sops}/bin/sops -d --config /dev/null";
-      };
-    };
   };
 }

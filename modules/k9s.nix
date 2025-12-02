@@ -19,7 +19,7 @@
         rmqpe = "permissions.rabbit.com";
       };
     };
-    plugin = {
+    plugins = {
       plugins = {
         # debug-container
         debug = {

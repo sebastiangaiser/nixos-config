@@ -2,15 +2,16 @@
   description = "NixOS configuration flake";
 
   inputs = {
+    # TODO switch to 25.11
     catppuccin.url = "github:catppuccin/nix/release-25.05";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     sops-nix.url = "github:Mic92/sops-nix";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     plasma-manager = {
