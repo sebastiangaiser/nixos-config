@@ -57,7 +57,6 @@
     eza
     file
     firefox
-    unstable.fluxcd
     fzf
     gawk
     gcc
@@ -89,7 +88,6 @@
     kubectl-validate
     kubectx
     kubelogin-oidc
-    kyverno
     ldns
     lf
     libcap
@@ -123,6 +121,8 @@
     tmate
     tmux
     tree
+    unstable.fluxcd
+    unstable.kyverno
     unzip
     upterm
     usbutils
