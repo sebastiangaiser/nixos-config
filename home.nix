@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./modules/atuin.nix
     ./modules/bat.nix
     ./modules/catppuccin.nix
     ./modules/chromium.nix
@@ -76,7 +77,7 @@
     iw
     jetbrains.goland
     jq
-    k9s
+    unstable.k9s
     kdePackages.kde-cli-tools
     kdePackages.ksshaskpass
     kdePackages.oxygen
