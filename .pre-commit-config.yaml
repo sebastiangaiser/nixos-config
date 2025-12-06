@@ -13,6 +13,7 @@ repos:
     rev: 3.0.0
     hooks:
       - id: shellcheck
+        exclude_types: [zsh]
 
   # TODO https://github.com/NixOS/nixfmt/pull/311
   # - repo: https://github.com/NixOS/nixfmt
