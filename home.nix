@@ -65,6 +65,7 @@
     gnused
     gnutar
     go
+    go-task
     gopls
     hcloud
     iftop
