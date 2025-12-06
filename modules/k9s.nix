@@ -2,7 +2,6 @@
 {
   programs.k9s = {
     enable = true;
-    aliases = {
       aliases = {
         dp = "deployments";
         sec = "v1/secrets";
@@ -12,12 +11,14 @@
         ro = "roles";
         rb = "rolebindings";
         np = "networkpolicies";
+        # https://cloudnative-pg.io/documentation/current/kubectl-plugin/
+        cnpg = "clusters.postgresql.cnpg.io";
+        # https://www.rabbitmq.com/kubernetes/operator/operator-overview
         rmqu = "users.rabbitmq.com";
         rmqv = "vhosts.rabbitmq.com";
         rmqq = "queues.rabbitmq.com";
         rmqpo = "policies.rabbitmq.com";
         rmqpe = "permissions.rabbit.com";
-      };
     };
     plugins = {
       # debug-container
@@ -75,6 +76,34 @@
           "$NAMESPACE"
           "--context"
           "$CONTEXT"
+        ];
+      };
+      # helm-diff
+      helm-diff-previous = {
+        shortCut = "Shift-D";
+        confirm = false;
+        description = "Diff with Previous Revision";
+        scopes = [ "helm" ];
+        command = "bash";
+        background = false;
+        args = [
+          "-c"
+          "LAST_REVISION=$(($COL-REVISION-1));"
+          "helm diff revision $COL-NAME $COL-REVISION $LAST_REVISION --kube-context $CONTEXT --namespace $NAMESPACE --color | less -RK"
+        ];
+      };
+      helm-diff-current = {
+        shortCut = "Shift-Q";
+        confirm = false;
+        description = "Diff with Current Revision";
+        scopes = [ "history" ];
+        command = "bash";
+        background = false;
+        args = [
+          "-c"
+          "RELEASE_NAME=$(echo $NAME | cut -d':' -f1);"
+          "LATEST_REVISION=$(helm history -n $NAMESPACE --kube-context $CONTEXT $RELEASE_NAME | grep deployed | cut -d$'\t' -f1 | tr -d ' \t');"
+          "helm diff revision $RELEASE_NAME $LATEST_REVISION $COL-REVISION --kube-context $CONTEXT --namespace $NAMESPACE --color | less -RK"
         ];
       };
       # cert-manager
@@ -356,19 +385,20 @@
           "$NAME"
         ];
       };
+      # TODO duplicate plugin key found for \"Shift-T\" in \"flux-trace\"
       # flux-trace
-      flux-trace = {
-        shortCut = "Shift-T";
-        confirm = false;
-        description = "Flux trace";
-        scopes = [ "all" ];
-        command = "sh";
-        background = true;
-        args = [
-          "-c"
-          "flux --context $CONTEXT trace $NAME --kind `echo $RESOURCE_NAME | sed -E 's/(s)$//g'` --api-version $RESOURCE_GROUP/$RESOURCE_VERSION --namespace $NAMESPACE $NAME | less"
-        ];
-      };
+      # flux-trace = {
+      #   shortCut = "Shift-T";
+      #   confirm = false;
+      #   description = "Flux trace";
+      #   scopes = [ "all" ];
+      #   command = "sh";
+      #   background = true;
+      #   args = [
+      #     "-c"
+      #     "flux --context $CONTEXT trace $NAME --kind `echo $RESOURCE_NAME | sed -E 's/(s)$//g'` --api-version $RESOURCE_GROUP/$RESOURCE_VERSION --namespace $NAMESPACE $NAME | less"
+      #   ];
+      # };
       cnpg-backup = {
         shortCut = "b";
         description = "Backup";
@@ -462,17 +492,18 @@
           "kubectl cnpg restart $NAME -n $NAMESPACE --context $CONTEXT |& less -R"
         ];
       };
-      cnpg-status = {
-        shortCut = "s";
-        description = "Status";
-        scopes = [ "cluster" ];
-        command = "bash";
-        background = false;
-        args = [
-          "-c"
-          "kubectl cnpg status $NAME -n $NAMESPACE --context $CONTEXT |& less -R"
-        ];
-      };
+      # TODO duplicate plugin key found for \"s\" in \"cnpg-status\"
+      # cnpg-status = {
+      #   shortCut = "s";
+      #   description = "Status";
+      #   scopes = [ "cluster" ];
+      #   command = "bash";
+      #   background = false;
+      #   args = [
+      #     "-c"
+      #     "kubectl cnpg status $NAME -n $NAMESPACE --context $CONTEXT |& less -R"
+      #   ];
+      # };
       cnpg-status-verbose = {
         shortCut = "Shift-S";
         description = "Status (verbose)";
@@ -486,28 +517,29 @@
       };
     };
     settings = {
-      skipLatestRevCheck = true;
       k9s = {
+        skipLatestRevCheck = true;
         logger = {
           tail = 1000;
           buffer = 100000;
           sinceSeconds = -1;
         };
-        namespace = {
-          active = "all";
-          lockFavorites = true;
-          favorites = [
-            "all"
-            "monitoring"
-            "observability"
-            "kafka"
-            "cert-manager"
-            "kube-system"
-            "kyverno"
-            "logging"
-            "default"
-          ];
-        };
+        # TODO not working, yet...
+        # namespace = {
+        #   active = "all";
+        #   lockFavorites = true;
+        #   favorites = [
+        #     "all"
+        #     "monitoring"
+        #     "observability"
+        #     "kafka"
+        #     "cert-manager"
+        #     "kube-system"
+        #     "kyverno"
+        #     "logging"
+        #     "default"
+        #   ];
+        # };
       };
     };
     # Set via catppuccin.nix

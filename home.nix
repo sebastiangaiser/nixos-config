@@ -130,6 +130,7 @@
     upterm
     usbutils
     which
+    xclip
     xz
     yq-go
     yubikey-manager
