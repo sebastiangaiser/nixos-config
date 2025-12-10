@@ -97,6 +97,7 @@
     lsof
     ltrace
     materia-kde-theme
+    moreutils
     mtr
     nix-output-monitor
     nixfmt-rfc-style

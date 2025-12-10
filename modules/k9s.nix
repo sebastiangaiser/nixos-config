@@ -524,7 +524,7 @@
           buffer = 100000;
           sinceSeconds = -1;
         };
-        # TODO not working, yet...
+        # TODO not supported by home-manager, yet...
         # namespace = {
         #   active = "all";
         #   lockFavorites = true;
