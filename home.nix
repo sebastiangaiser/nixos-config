@@ -67,6 +67,7 @@
     gnutar
     go
     go-task
+    golangci-lint
     gopls
     hcloud
     iftop
@@ -77,7 +78,7 @@
     iw
     jetbrains.goland
     jq
-    unstable.k9s
+    k9s
     kdePackages.kde-cli-tools
     kdePackages.ksshaskpass
     kdePackages.oxygen

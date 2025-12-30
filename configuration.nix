@@ -66,6 +66,10 @@
     enable = true;
   };
 
+  # Yubikey
+  services.pcscd.enable = true;
+  services.udev.packages = [pkgs.yubikey-personalization];
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
