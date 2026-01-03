@@ -44,13 +44,15 @@
 
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.sebastian = {
-                imports = [
-                  (import ./home.nix {unstable = nixpkgs-unstable.legacyPackages.${system};})
-                  catppuccin.homeModules.catppuccin
-                ];
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.sebastian = {
+                  imports = [
+                    (import ./home.nix {unstable = nixpkgs-unstable.legacyPackages.${system};})
+                    catppuccin.homeModules.catppuccin
+                  ];
+                };
               };
 
               home-manager.sharedModules = [
