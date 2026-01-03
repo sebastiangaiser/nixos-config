@@ -1,3 +1,4 @@
+# https://nix-community.github.io/home-manager/options.xhtml
 {unstable}: {
   config,
   pkgs,
@@ -22,15 +23,6 @@
     ./modules/vscode.nix
     ./modules/zsh.nix
   ];
-
-  home.username = "sebastian";
-  home.homeDirectory = "/home/sebastian";
-
-  # set cursor size and dpi for 4k monitor
-  xresources.properties = {
-    "Xcursor.size" = 16;
-    "Xft.dpi" = 172;
-  };
 
   home.packages = with pkgs; [
     (pkgs.wrapHelm pkgs.kubernetes-helm {
@@ -143,6 +135,10 @@
     zstd
   ];
 
-  home.stateVersion = "25.11";
+  home = {
+    username = "sebastian";
+    homeDirectory = "/home/sebastian";
+    stateVersion = "25.11";
+  };
   programs.home-manager.enable = true;
 }
