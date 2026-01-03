@@ -70,6 +70,7 @@
     golangci-lint
     gopls
     hcloud
+    helm-docs
     iftop
     iotop
     ipcalc

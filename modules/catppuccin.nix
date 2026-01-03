@@ -2,6 +2,11 @@
 {
   # https://nix.catppuccin.com/search/
   catppuccin = {
+    # TODO somehow not working
+    # atuin = {
+    #   enable = true;
+    #   flavor = "mocha";
+    # };
     bat = {
       enable = true;
       flavor = "mocha";
