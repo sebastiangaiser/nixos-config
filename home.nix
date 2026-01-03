@@ -24,6 +24,10 @@
     ./modules/zsh.nix
   ];
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
+
   home.packages = with pkgs; [
     (pkgs.wrapHelm pkgs.kubernetes-helm {
       plugins = with pkgs.kubernetes-helmPlugins; [
@@ -63,6 +67,7 @@
     gopls
     hcloud
     helm-docs
+    htop
     iftop
     iotop
     ipcalc
@@ -72,6 +77,7 @@
     jetbrains.goland
     jq
     k9s
+    kdePackages.kate
     kdePackages.kde-cli-tools
     kdePackages.ksshaskpass
     kdePackages.oxygen
@@ -116,6 +122,7 @@
     sysstat
     talosctl
     telegram-desktop
+    thunderbird
     tmate
     tmux
     tree
@@ -124,6 +131,7 @@
     unzip
     upterm
     usbutils
+    wget
     which
     xclip
     xz

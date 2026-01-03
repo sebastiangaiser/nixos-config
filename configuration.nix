@@ -83,15 +83,8 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-      kdePackages.kate
-      thunderbird
-    ];
     shell = pkgs.zsh;
   };
-
-  programs.firefox.enable = false;
-  programs.thunderbird.enable = true;
 
   programs.zsh.enable = true;
 
@@ -106,13 +99,7 @@
   ];
   environment.systemPackages = with pkgs; [
     vim
-    wget
-    git
-    htop
-    ghostty
   ];
-
-  environment.variables.EDITOR = "nvim";
 
   system.autoUpgrade = {
     enable = true;
