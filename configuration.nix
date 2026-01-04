@@ -86,7 +86,6 @@
     shell = pkgs.zsh;
   };
 
-  programs.zsh.enable = true;
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -111,10 +110,13 @@
     options = "--delete-older-than 7d";
   };
 
-  programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs = {
+    zsh.enable = true;
+    mtr.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
 
   system.stateVersion = "25.11";
