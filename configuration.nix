@@ -3,54 +3,54 @@
   imports = [
     ./hardware-configuration.nix
     ./configuration/container.nix
+    ./configuration/yubikey.nix
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  networking.hostName = "framework13";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  boot.loader.systemd-boot.configurationLimit = 10;
-  nix.settings = {
-    auto-optimise-store = true;
-    download-buffer-size = 524288000;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      systemd-boot.configurationLimit = 10;
+    };
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  # Enable networking
-  networking.networkmanager = {
-    enable = true;
-    plugins = [
-      pkgs.networkmanager-openvpn
-    ];
+  networking = {
+    hostName = "framework13";
+    networkmanager = {
+      enable = true;
+      plugins = [
+        pkgs.networkmanager-openvpn
+      ];
+    };
   };
 
   time.timeZone = "Europe/Berlin";
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "de_DE.UTF-8";
+      LC_IDENTIFICATION = "de_DE.UTF-8";
+      LC_MEASUREMENT = "de_DE.UTF-8";
+      LC_MONETARY = "de_DE.UTF-8";
+      LC_NAME = "de_DE.UTF-8";
+      LC_NUMERIC = "de_DE.UTF-8";
+      LC_PAPER = "de_DE.UTF-8";
+      LC_TELEPHONE = "de_DE.UTF-8";
+      LC_TIME = "de_DE.UTF-8";
+    };
   };
-
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  services.xserver.xkb = {
-    layout = "de";
-    variant = "";
-  };
-
   console.keyMap = "de";
+
+  services = {
+    displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
+    xserver.enable = true;
+    xserver.xkb = {
+      layout = "de";
+      variant = "";
+    };
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -61,10 +61,6 @@
   services.fwupd = {
     enable = true;
   };
-
-  # Yubikey
-  services.pcscd.enable = true;
-  services.udev.packages = [pkgs.yubikey-personalization];
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -86,28 +82,29 @@
     shell = pkgs.zsh;
   };
 
-
   nixpkgs.config = {
     allowUnfree = true;
     chromium.enableWideVine = true;
   };
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
   environment.systemPackages = with pkgs; [
     vim
   ];
 
-  system.autoUpgrade = {
-    enable = true;
-  };
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      download-buffer-size = 524288000;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
   };
 
   programs = {
@@ -119,5 +116,10 @@
     };
   };
 
-  system.stateVersion = "25.11";
+  system = {
+    autoUpgrade = {
+      enable = true;
+    };
+    stateVersion = "25.11";
+  };
 }
