@@ -2,8 +2,7 @@
   description = "NixOS configuration flake";
 
   inputs = {
-    # TODO switch to 25.11
-    catppuccin.url = "github:catppuccin/nix/release-25.05";
+    catppuccin.url = "github:catppuccin/nix/release-25.11";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
