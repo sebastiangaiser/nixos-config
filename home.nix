@@ -57,6 +57,7 @@
     fzf
     gawk
     gcc
+    glab
     gnumake
     gnupg
     gnused
