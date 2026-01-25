@@ -100,12 +100,15 @@
               };
             };
           }
-          "org.kde.plasma.userswitcher"
-          #{
-          # TODO add user icon...
-          #  userSwitcher = {
-          #  };
-          #}
+          {
+            name = "org.kde.plasma.userswitcher";
+            config = {
+              showFaceIcon = true;
+              showUserName = false;
+              showFullName = true;
+              iconSize = 22;
+            };
+          }
           {
             name = "org.kde.plasma.lock_logout";
             config.General = {
