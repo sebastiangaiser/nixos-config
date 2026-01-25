@@ -16,19 +16,17 @@
 
     workspace = {
       clickItemTo = "select";
-      colorScheme = "MateriaDark";
       lookAndFeel = "org.kde.breezedark.desktop";
-      cursor.theme = "Oxygen_White";
       theme = "Materia";
+      colorScheme = "MateriaDark";
+      cursor.theme = "Oxygen_White";
       iconTheme = "Papirus-Dark";
       wallpaper = "/home/sebastian/nixos-config/images/nixos-wallpaper-catppuccin-mocha.png";
       soundTheme = "ocean";
-      splashScreen = {
-        theme = "None";
-      };
+      splashScreen.theme = "None";
       windowDecorations = {
-        library = "org.kde.kwin.aurorae";
-        theme = "__aurorae__svg__MateriaDark";
+        library = "org.kde.kdecoration2";
+        theme = "Materia-dark";
       };
     };
 
