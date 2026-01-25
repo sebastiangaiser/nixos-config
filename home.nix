@@ -121,6 +121,7 @@
     stern
     strace
     sysstat
+    unstable.talhelper
     talosctl
     telegram-desktop
     thunderbird

@@ -10,6 +10,11 @@
       telescope-fzf-native-nvim
       telescope-nvim
       undotree
+      go-nvim
+      coc-go
+      coc-fzf
+      coc-yaml
+      coc-json
     ];
     extraConfig = ''
       lua << EOF

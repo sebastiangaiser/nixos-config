@@ -44,6 +44,7 @@
             home-manager.nixosModules.home-manager
             {
               home-manager = {
+                allowUnfree = true;
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.sebastian = {
