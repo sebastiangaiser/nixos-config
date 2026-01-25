@@ -43,13 +43,19 @@
 
             home-manager.nixosModules.home-manager
             {
+              nixpkgs.config.allowUnfree = true;
+
               home-manager = {
-                allowUnfree = true;
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.sebastian = {
                   imports = [
-                    (import ./home.nix {unstable = nixpkgs-unstable.legacyPackages.${system};})
+                    (import ./home.nix {
+                      unstable = import nixpkgs-unstable {
+                        inherit system;
+                        config.allowUnfree = true;
+                      };
+                    })
                     catppuccin.homeModules.catppuccin
                   ];
                 };

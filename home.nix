@@ -44,6 +44,7 @@
     chromium
     cilium-cli
     cmctl
+    unstable.claude-code
     cowsay
     curl
     direnv

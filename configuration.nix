@@ -83,7 +83,6 @@
   };
 
   nixpkgs.config = {
-    allowUnfree = true;
     chromium.enableWideVine = true;
   };
 
