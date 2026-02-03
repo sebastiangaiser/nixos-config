@@ -36,6 +36,7 @@
       ".envrc"
       "shell.nix"
       "*.iml"
+      "CLAUDE.md"
     ];
 
     includes = [

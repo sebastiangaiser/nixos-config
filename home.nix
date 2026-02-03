@@ -32,8 +32,9 @@
     (pkgs.wrapHelm pkgs.kubernetes-helm {
       plugins = with pkgs.kubernetes-helmPlugins; [
         helm-diff
-        helm-secrets
         helm-s3
+        helm-secrets
+        helm-unittest
       ];
     })
     age
@@ -65,6 +66,7 @@
     gnutar
     go
     go-task
+    gofumpt
     golangci-lint
     gopls
     hcloud
