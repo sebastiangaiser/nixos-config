@@ -94,6 +94,7 @@
     kubectl-validate
     kubectx
     kubelogin-oidc
+    kustomize
     ldns
     lf
     libcap
