@@ -88,6 +88,7 @@
     killall
     kitty
     kitty-themes
+    ko
     kubectl
     kubectl-cnpg
     kubectl-neat
