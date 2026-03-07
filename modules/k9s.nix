@@ -2,6 +2,8 @@
 {
   programs.k9s = {
     enable = true;
+
+      # Shortcuts to quickly navigate to resources by alias (e.g. :dp → deployments)
       aliases = {
         dp = "deployments";
         sec = "v1/secrets";
@@ -20,6 +22,7 @@
         rmqpo = "policies.rabbitmq.com";
         rmqpe = "permissions.rabbit.com";
     };
+    # Keyboard shortcuts that run shell commands against selected resources
     plugins = {
       # debug-container
       debug = {
@@ -385,20 +388,31 @@
           "$NAME"
         ];
       };
-      # TODO duplicate plugin key found for \"Shift-T\" in \"flux-trace\"
-      # flux-trace
-      # flux-trace = {
-      #   shortCut = "Shift-T";
-      #   confirm = false;
-      #   description = "Flux trace";
-      #   scopes = [ "all" ];
-      #   command = "sh";
-      #   background = true;
-      #   args = [
-      #     "-c"
-      #     "flux --context $CONTEXT trace $NAME --kind `echo $RESOURCE_NAME | sed -E 's/(s)$//g'` --api-version $RESOURCE_GROUP/$RESOURCE_VERSION --namespace $NAMESPACE $NAME | less"
-      #   ];
-      # };
+      flux-trace = {
+        shortCut = "Shift-T";
+        confirm = false;
+        description = "Flux trace";
+        scopes = [
+          # Flux resources
+          "helmreleases"
+          "kustomizations"
+          "gitrepositories"
+          "helmrepositories"
+          "helmcharts"
+          "ocirepositories"
+          # Workloads deployed by Flux
+          "deployments"
+          "daemonsets"
+          "statefulsets"
+          "pods"
+        ];
+        command = "sh";
+        background = false;
+        args = [
+          "-c"
+          "flux --context $CONTEXT trace $NAME --kind `echo $RESOURCE_NAME | sed -E 's/(s)$//g'` --api-version $RESOURCE_GROUP/$RESOURCE_VERSION --namespace $NAMESPACE $NAME | less"
+        ];
+      };
       cnpg-backup = {
         shortCut = "b";
         description = "Backup";
@@ -492,18 +506,17 @@
           "kubectl cnpg restart $NAME -n $NAMESPACE --context $CONTEXT |& less -R"
         ];
       };
-      # TODO duplicate plugin key found for \"s\" in \"cnpg-status\"
-      # cnpg-status = {
-      #   shortCut = "s";
-      #   description = "Status";
-      #   scopes = [ "cluster" ];
-      #   command = "bash";
-      #   background = false;
-      #   args = [
-      #     "-c"
-      #     "kubectl cnpg status $NAME -n $NAMESPACE --context $CONTEXT |& less -R"
-      #   ];
-      # };
+      cnpg-status = {
+        shortCut = "i";
+        description = "Status";
+        scopes = [ "cluster" ];
+        command = "bash";
+        background = false;
+        args = [
+          "-c"
+          "kubectl cnpg status $NAME -n $NAMESPACE --context $CONTEXT |& less -R"
+        ];
+      };
       cnpg-status-verbose = {
         shortCut = "Shift-S";
         description = "Status (verbose)";
@@ -516,6 +529,7 @@
         ];
       };
     };
+    # General k9s behaviour settings (log buffer, update checks, etc.)
     settings = {
       k9s = {
         skipLatestRevCheck = true;
@@ -524,26 +538,127 @@
           buffer = 100000;
           sinceSeconds = -1;
         };
-        # TODO not supported by home-manager, yet...
-        # namespace = {
-        #   active = "all";
-        #   lockFavorites = true;
-        #   favorites = [
-        #     "all"
-        #     "monitoring"
-        #     "observability"
-        #     "kafka"
-        #     "cert-manager"
-        #     "kube-system"
-        #     "kyverno"
-        #     "logging"
-        #     "default"
-        #   ];
-        # };
+        # Namespace favorites are managed by k9s at runtime in
+        # ~/.local/share/k9s/clusters/<cluster>/<context>/config.yaml
+        # and cannot be configured here. Set them via the k9s UI (press 'f').
+        # namespace = {};
       };
     };
-    # Set via catppuccin.nix
+    # Skins set via catppuccin.nix
     skins = {};
+
+    # programs.k9s.views generates the legacy jsonPath format incompatible with
+    # k9s v0.40+. Views are written directly via xdg.configFile below instead.
     views = {};
   };
+
+  # Custom column views using the k9s v0.40+ format:
+  # Each column is either a standard name (e.g. NAME, AGE) or
+  # COL_NAME:.jsonpath with optional attributes: |W (wide), |R (right-align), |T (time)
+  xdg.configFile."k9s/views.yaml".text = ''
+    views:
+      helm.toolkit.fluxcd.io/v2/helmreleases:
+        columns:
+          - NAME
+          - NAMESPACE
+          - SUSPEND:.spec.suspend
+          - READY:.status.conditions[?(@.type=='Ready')].status
+          - CHART:.spec.chart.spec.chart
+          - VERSION:.spec.chart.spec.version
+          - REVISION:.status.lastAppliedRevision|W
+          - AGE
+      kustomize.toolkit.fluxcd.io/v1/kustomizations:
+        columns:
+          - NAME
+          - NAMESPACE
+          - SUSPEND:.spec.suspend
+          - READY:.status.conditions[?(@.type=='Ready')].status
+          - SOURCE:.spec.sourceRef.name
+          - PATH:.spec.path
+          - REVISION:.status.lastAppliedRevision|W
+          - AGE
+
+      # Source resources
+      source.toolkit.fluxcd.io/v1/gitrepositories:
+        columns:
+          - NAME
+          - NAMESPACE
+          - SUSPEND:.spec.suspend
+          - READY:.status.conditions[?(@.type=='Ready')].status
+          - URL:.spec.url
+          - REVISION:.status.artifact.revision|W
+          - AGE
+      source.toolkit.fluxcd.io/v1/helmrepositories:
+        columns:
+          - NAME
+          - NAMESPACE
+          - SUSPEND:.spec.suspend
+          - READY:.status.conditions[?(@.type=='Ready')].status
+          - URL:.spec.url
+          - AGE
+      source.toolkit.fluxcd.io/v1/helmcharts:
+        columns:
+          - NAME
+          - NAMESPACE
+          - SUSPEND:.spec.suspend
+          - READY:.status.conditions[?(@.type=='Ready')].status
+          - CHART:.spec.chart
+          - VERSION:.spec.version
+          - SOURCE:.spec.sourceRef.name
+          - REVISION:.status.artifact.revision|W
+          - AGE
+      source.toolkit.fluxcd.io/v1/ocirepositories:
+        columns:
+          - NAME
+          - NAMESPACE
+          - SUSPEND:.spec.suspend
+          - READY:.status.conditions[?(@.type=='Ready')].status
+          - URL:.spec.url
+          - REVISION:.status.artifact.revision|W
+          - AGE
+      source.toolkit.fluxcd.io/v1/buckets:
+        columns:
+          - NAME
+          - NAMESPACE
+          - SUSPEND:.spec.suspend
+          - READY:.status.conditions[?(@.type=='Ready')].status
+          - ENDPOINT:.spec.endpoint
+          - BUCKET:.spec.bucketName
+          - AGE
+      source.toolkit.fluxcd.io/v1/externalartifacts:
+        columns:
+          - NAME
+          - NAMESPACE
+          - READY:.status.conditions[?(@.type=='Ready')].status
+          - URL:.status.url
+          - REVISION:.status.artifact.revision|W
+          - AGE
+
+      # Notification resources
+      notification.toolkit.fluxcd.io/v1beta3/alerts:
+        columns:
+          - NAME
+          - NAMESPACE
+          - SUSPEND:.spec.suspend
+          - READY:.status.conditions[?(@.type=='Ready')].status
+          - PROVIDER:.spec.providerRef.name
+          - SEVERITY:.spec.eventSeverity
+          - AGE
+      notification.toolkit.fluxcd.io/v1beta3/providers:
+        columns:
+          - NAME
+          - NAMESPACE
+          - SUSPEND:.spec.suspend
+          - READY:.status.conditions[?(@.type=='Ready')].status
+          - TYPE:.spec.type
+          - AGE
+      notification.toolkit.fluxcd.io/v1/receivers:
+        columns:
+          - NAME
+          - NAMESPACE
+          - SUSPEND:.spec.suspend
+          - READY:.status.conditions[?(@.type=='Ready')].status
+          - TYPE:.spec.type
+          - AGE
+  '';
 }

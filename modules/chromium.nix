@@ -3,7 +3,6 @@
   programs.chromium = {
     enable = true;
     package = pkgs.chromium;
-    # enablePlasmaBrowserIntegration = true;
     commandLineArgs = [
       "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
       "--enable-gpu-rasterization"
@@ -22,6 +21,10 @@
       # uBlock Origin Lite
       # https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh
       "ddkjiahejlhfcafbddmgiahcphecmpfh"
+
+      # KDE Plasma Browser Integration
+      # https://chromewebstore.google.com/detail/plasma-integration/cimiefiiaegbelhefglklhhakcgmhkai
+      "cimiefiiaegbelhefglklhhakcgmhkai"
 
     ];
     nativeMessagingHosts = [
