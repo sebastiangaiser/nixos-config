@@ -48,6 +48,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
+                backupFileExtension = "bak";
                 users.sebastian = {
                   imports = [
                     (import ./home.nix {

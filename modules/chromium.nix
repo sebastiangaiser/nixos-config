@@ -4,21 +4,11 @@
     enable = true;
     package = pkgs.chromium;
     # enablePlasmaBrowserIntegration = true;
-    # extraOpts = {
-    #   "BrowserSignin" = 0;
-    #   "SyncDisabled" = true;
-    #   "PasswordManagerEnabled" = false;
-    #   "SpellcheckEnabled" = true;
-    #   "SpellcheckLanguage" = [
-    #     "de"
-    #     "en-US"
-    #   ];
-    # };
     commandLineArgs = [
-      # TODO somehow producing an error...
-      # "--enable-logging=stderr"
-      # "--ignore-gpu-blocklist"
-      # "--disable-features=AutofillSavePaymentMethods"
+      "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
+      "--enable-gpu-rasterization"
+      "--enable-zero-copy"
+      "--ignore-gpu-blocklist"
     ];
     dictionaries = [
       pkgs.hunspellDictsChromium.de_DE

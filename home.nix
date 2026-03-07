@@ -12,6 +12,7 @@
     ./modules/catppuccin.nix
     ./modules/chromium.nix
     ./modules/direnv.nix
+    ./modules/firefox.nix
     ./modules/fonts.nix
     ./modules/ghostty.nix
     ./modules/git.nix
@@ -42,7 +43,6 @@
     bitwarden-cli
     bitwarden-desktop
     btop
-    chromium
     cilium-cli
     cmctl
     unstable.claude-code
@@ -55,10 +55,10 @@
     ethtool
     eza
     file
-    firefox
     fzf
     gawk
     gcc
+    gh
     glab
     gnumake
     gnupg
@@ -99,6 +99,7 @@
     ldns
     lf
     libcap
+    libva-utils
     lm_sensors
     lsof
     ltrace
