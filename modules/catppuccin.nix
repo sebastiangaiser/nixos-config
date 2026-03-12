@@ -22,10 +22,7 @@
       enable = true;
       flavor = "mocha";
     };
-    nvim = {
-      enable = true;
-      flavor = "mocha";
-    };
+    # nvim colorscheme is managed by programs.nixvim.colorschemes.catppuccin in modules/neovim/ui.nix
     thunderbird = {
       enable = true;
       flavor = "latte";

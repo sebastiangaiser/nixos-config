@@ -1,28 +1,22 @@
-{ config, pkgs, ... }:
+{ ... }:
 {
-  programs.neovim = {
-    # inspiration: https://github.com/MattCairns/nixos-config/blob/16021e59119800f3d8e6d1bd022f117608ef199d/modules/dev/neovim/default.nix
+  imports = [
+    ./neovim/options.nix
+    ./neovim/keymaps.nix
+    ./neovim/lsp.nix
+    ./neovim/go.nix
+    ./neovim/telescope.nix
+    ./neovim/git.nix
+    ./neovim/ui.nix
+    ./neovim/kubernetes.nix
+    ./neovim/flux.nix
+    ./neovim/kyverno.nix
+    ./neovim/prometheus-operator.nix
+    ./neovim/opentofu.nix
+  ];
+
+  programs.nixvim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [
-      dashboard-nvim
-      nvim-lspconfig
-      nvim-treesitter.withAllGrammars
-      telescope-fzf-native-nvim
-      telescope-nvim
-      undotree
-      go-nvim
-      coc-go
-      coc-fzf
-      coc-yaml
-      coc-json
-    ];
-    extraConfig = ''
-      lua << EOF
-      ${builtins.readFile neovim-config/options.lua}
-    '';
-    extraPackages = [
-      pkgs.shfmt
-    ];
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;

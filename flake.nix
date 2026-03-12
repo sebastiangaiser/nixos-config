@@ -13,6 +13,10 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +32,7 @@
       nixpkgs-master,
       sops-nix,
       catppuccin,
+      nixvim,
       plasma-manager,
       home-manager,
       nixos-hardware,
@@ -63,6 +68,7 @@
               };
 
               home-manager.sharedModules = [
+                nixvim.homeModules.nixvim
                 plasma-manager.homeModules.plasma-manager
               ];
             }
