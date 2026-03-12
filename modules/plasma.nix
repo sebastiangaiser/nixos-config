@@ -216,4 +216,20 @@
       };
     };
   };
+
+  xdg.configFile."autostart/thunderbird.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=Thunderbird
+    Exec=thunderbird
+    X-KDE-autostart-condition=ksmserver
+  '';
+
+  xdg.configFile."autostart/spotify.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=Spotify
+    Exec=spotify
+    X-KDE-autostart-condition=ksmserver
+  '';
 }
