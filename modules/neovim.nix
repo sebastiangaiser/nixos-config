@@ -4,6 +4,7 @@
     ./neovim/options.nix
     ./neovim/keymaps.nix
     ./neovim/lsp.nix
+    ./neovim/nix.nix
     ./neovim/go.nix
     ./neovim/telescope.nix
     ./neovim/git.nix
