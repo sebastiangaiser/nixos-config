@@ -27,7 +27,7 @@
       };
     };
     attributes = [
-      "**/*.sops.yaml diff=sopsdiffer"
+      "**/*.sops.y?ml diff=sopsdiffer"
     ];
     ignores = [
       ".vscode/"
