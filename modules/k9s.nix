@@ -388,24 +388,107 @@
           "$NAME"
         ];
       };
-      flux-trace = {
+      flux-trace-helmrelease = {
         shortCut = "Shift-T";
         confirm = false;
         description = "Flux trace";
-        scopes = [
-          # Flux resources
-          "helmreleases"
-          "kustomizations"
-          "gitrepositories"
-          "helmrepositories"
-          "helmcharts"
-          "ocirepositories"
-          # Workloads deployed by Flux
-          "deployments"
-          "daemonsets"
-          "statefulsets"
-          "pods"
+        scopes = [ "helmreleases" ];
+        command = "sh";
+        background = false;
+        args = [
+          "-c"
+          "flux --context $CONTEXT trace $NAME --kind `echo $RESOURCE_NAME | sed -E 's/(s)$//g'` --api-version $RESOURCE_GROUP/$RESOURCE_VERSION --namespace $NAMESPACE $NAME | less"
         ];
+      };
+      flux-trace-kustomization = {
+        shortCut = "Shift-T";
+        confirm = false;
+        description = "Flux trace";
+        scopes = [ "kustomizations" ];
+        command = "sh";
+        background = false;
+        args = [
+          "-c"
+          "flux --context $CONTEXT trace $NAME --kind `echo $RESOURCE_NAME | sed -E 's/(s)$//g'` --api-version $RESOURCE_GROUP/$RESOURCE_VERSION --namespace $NAMESPACE $NAME | less"
+        ];
+      };
+      flux-trace-gitrepository = {
+        shortCut = "Shift-T";
+        confirm = false;
+        description = "Flux trace";
+        scopes = [ "gitrepositories" ];
+        command = "sh";
+        background = false;
+        args = [
+          "-c"
+          "flux --context $CONTEXT trace $NAME --kind `echo $RESOURCE_NAME | sed -E 's/(s)$//g'` --api-version $RESOURCE_GROUP/$RESOURCE_VERSION --namespace $NAMESPACE $NAME | less"
+        ];
+      };
+      flux-trace-helmrepository = {
+        shortCut = "Shift-T";
+        confirm = false;
+        description = "Flux trace";
+        scopes = [ "helmrepositories" ];
+        command = "sh";
+        background = false;
+        args = [
+          "-c"
+          "flux --context $CONTEXT trace $NAME --kind `echo $RESOURCE_NAME | sed -E 's/(s)$//g'` --api-version $RESOURCE_GROUP/$RESOURCE_VERSION --namespace $NAMESPACE $NAME | less"
+        ];
+      };
+      flux-trace-helmchart = {
+        shortCut = "Shift-T";
+        confirm = false;
+        description = "Flux trace";
+        scopes = [ "helmcharts" ];
+        command = "sh";
+        background = false;
+        args = [
+          "-c"
+          "flux --context $CONTEXT trace $NAME --kind `echo $RESOURCE_NAME | sed -E 's/(s)$//g'` --api-version $RESOURCE_GROUP/$RESOURCE_VERSION --namespace $NAMESPACE $NAME | less"
+        ];
+      };
+      flux-trace-ocirepository = {
+        shortCut = "Shift-T";
+        confirm = false;
+        description = "Flux trace";
+        scopes = [ "ocirepositories" ];
+        command = "sh";
+        background = false;
+        args = [
+          "-c"
+          "flux --context $CONTEXT trace $NAME --kind `echo $RESOURCE_NAME | sed -E 's/(s)$//g'` --api-version $RESOURCE_GROUP/$RESOURCE_VERSION --namespace $NAMESPACE $NAME | less"
+        ];
+      };
+      flux-trace-deployment = {
+        shortCut = "Shift-T";
+        confirm = false;
+        description = "Flux trace";
+        scopes = [ "deployments" ];
+        command = "sh";
+        background = false;
+        args = [
+          "-c"
+          "flux --context $CONTEXT trace $NAME --kind `echo $RESOURCE_NAME | sed -E 's/(s)$//g'` --api-version $RESOURCE_GROUP/$RESOURCE_VERSION --namespace $NAMESPACE $NAME | less"
+        ];
+      };
+      flux-trace-daemonset = {
+        shortCut = "Shift-T";
+        confirm = false;
+        description = "Flux trace";
+        scopes = [ "daemonsets" ];
+        command = "sh";
+        background = false;
+        args = [
+          "-c"
+          "flux --context $CONTEXT trace $NAME --kind `echo $RESOURCE_NAME | sed -E 's/(s)$//g'` --api-version $RESOURCE_GROUP/$RESOURCE_VERSION --namespace $NAMESPACE $NAME | less"
+        ];
+      };
+      flux-trace-statefulset = {
+        shortCut = "Shift-T";
+        confirm = false;
+        description = "Flux trace";
+        scopes = [ "statefulsets" ];
         command = "sh";
         background = false;
         args = [

@@ -109,6 +109,8 @@
     { mode = "n"; key = "<leader>4"; action = { __raw = "function() require('harpoon'):list():select(4) end"; }; options = { silent = true; desc = "Harpoon slot 4"; }; }
 
     # ── GoLand / IntelliJ compatible bindings ──────────────────────────
+    # Delete line (GoLand Ctrl-y)
+    { mode = "n"; key = "<C-y>"; action = "dd"; options = { silent = true; desc = "Delete current line"; }; }
     # Search
     { mode = "n"; key = "<C-S-f>"; action = "<cmd>Telescope live_grep<CR>"; options = { silent = true; desc = "Find in path"; }; }
     { mode = "n"; key = "<C-S-n>"; action = "<cmd>Telescope find_files<CR>"; options = { silent = true; desc = "Navigate to file"; }; }

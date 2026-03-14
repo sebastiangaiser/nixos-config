@@ -142,5 +142,22 @@
 
     # ── Undo tree ────────────────────────────────────────────────────────
     plugins.undotree.enable = true;
+
+    # ── Multi-cursor (GoLand-style) ───────────────────────────────────────
+    # Ctrl-Up / Ctrl-Down  →  add caret above / below  (like GoLand double-Ctrl + Up/Down)
+    # Ctrl-n               →  select next occurrence    (like GoLand Ctrl-d / Alt-J)
+    # n / N                →  next / prev occurrence while selecting
+    # q                    →  skip current, go to next
+    # Q                    →  remove current cursor
+    # Tab                  →  switch between cursor and extend mode
+    extraPlugins = with pkgs.vimPlugins; [ vim-visual-multi ];
+    extraConfigLua = ''
+      vim.g.VM_maps = {
+        ['Find Under']         = '<C-n>',
+        ['Find Subword Under'] = '<C-n>',
+        ['Add Cursor Down']    = '<C-Down>',
+        ['Add Cursor Up']      = '<C-Up>',
+      }
+    '';
   };
 }

@@ -2,12 +2,12 @@
 {
   programs.nixvim = {
     # ── OpenTofu LSP ──────────────────────────────────────────────────────
-    # opentofu-ls is a drop-in replacement for terraform-ls.
+    # tofu-ls is a drop-in replacement for terraform-ls.
     # Substitute the package and extend filetypes to cover .tofu files.
     # See: https://github.com/nix-community/nixvim/issues/3002
     plugins.lsp.servers.terraformls = {
       enable = true;
-      package = pkgs.opentofu-ls;
+      package = pkgs.tofu-ls;
       filetypes = [ "terraform" "terraform-vars" "tofu" ];
     };
 
@@ -21,7 +21,7 @@
     # ── Binaries ─────────────────────────────────────────────────────────
     extraPackages = with pkgs; [
       opentofu
-      opentofu-ls
+      tofu-ls
       tflint
     ];
   };
