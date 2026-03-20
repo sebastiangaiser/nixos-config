@@ -20,6 +20,7 @@
     ./modules/kitty.nix
     ./modules/neovim.nix
     ./modules/plasma.nix
+    ./modules/ssh.nix
     ./modules/tmux.nix
     ./modules/vscode.nix
     ./modules/zsh.nix
