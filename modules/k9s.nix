@@ -274,6 +274,67 @@
           "$NAME"
         ];
       };
+      # helmrepository
+      reconcile-helmrepository = {
+        shortCut = "Shift-C";
+        confirm = false;
+        description = "Re_c_oncile a HelmRepository";
+        scopes = [ "helmrepositories" ];
+        command = "flux";
+        background = true;
+        args = [
+          "reconcile"
+          "--timeout"
+          "1s"
+          "source"
+          "helm"
+          "--context"
+          "$CONTEXT"
+          "--namespace"
+          "$NAMESPACE"
+          "$NAME"
+        ];
+      };
+      resume-helmrepository = {
+        shortCut = "Shift-R";
+        confirm = false;
+        description = "Resume a HelmRepository";
+        scopes = [ "helmrepositories" ];
+        command = "flux";
+        background = true;
+        args = [
+          "resume"
+          "--timeout"
+          "1s"
+          "source"
+          "helm"
+          "--context"
+          "$CONTEXT"
+          "--namespace"
+          "$NAMESPACE"
+          "$NAME"
+        ];
+      };
+      suspend-helmrepository = {
+        shortCut = "Shift-S";
+        confirm = false;
+        description = "Suspend a HelmRepository";
+        scopes = [ "helmrepositories" ];
+        command = "flux";
+        background = true;
+        args = [
+          "suspend"
+          "--timeout"
+          "1s"
+          "source"
+          "helm"
+          "--context"
+          "$CONTEXT"
+          "--namespace"
+          "$NAMESPACE"
+          "$NAME"
+        ];
+      };
       # helmrelease
       reconcile-helmrelease = {
         shortCut = "Shift-C";
@@ -381,6 +442,67 @@
         args = [
           "suspend"
           "kustomization"
+          "--context"
+          "$CONTEXT"
+          "--namespace"
+          "$NAMESPACE"
+          "$NAME"
+        ];
+      };
+      # ocirepository
+      reconcile-ocirepository = {
+        shortCut = "Shift-C";
+        confirm = false;
+        description = "Re_c_oncile an OCIRepository";
+        scopes = [ "ocirepositories" ];
+        command = "flux";
+        background = true;
+        args = [
+          "reconcile"
+          "--timeout"
+          "1s"
+          "source"
+          "oci"
+          "--context"
+          "$CONTEXT"
+          "--namespace"
+          "$NAMESPACE"
+          "$NAME"
+        ];
+      };
+      resume-ocirepository = {
+        shortCut = "Shift-R";
+        confirm = false;
+        description = "Resume an OCIRepository";
+        scopes = [ "ocirepositories" ];
+        command = "flux";
+        background = true;
+        args = [
+          "resume"
+          "--timeout"
+          "1s"
+          "source"
+          "oci"
+          "--context"
+          "$CONTEXT"
+          "--namespace"
+          "$NAMESPACE"
+          "$NAME"
+        ];
+      };
+      suspend-ocirepository = {
+        shortCut = "Shift-S";
+        confirm = false;
+        description = "Suspend an OCIRepository";
+        scopes = [ "ocirepositories" ];
+        command = "flux";
+        background = true;
+        args = [
+          "suspend"
+          "--timeout"
+          "1s"
+          "source"
+          "oci"
           "--context"
           "$CONTEXT"
           "--namespace"
@@ -742,6 +864,111 @@
           - SUSPEND:.spec.suspend
           - READY:.status.conditions[?(@.type=='Ready')].status
           - TYPE:.spec.type
+          - AGE
+
+      # Gateway API resources
+      gateway.networking.k8s.io/v1/gatewayclasses:
+        columns:
+          - NAME
+          - CONTROLLER:.spec.controllerName
+          - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
+          - AGE
+      gateway.networking.k8s.io/v1/gateways:
+        columns:
+          - NAME
+          - NAMESPACE
+          - CLASS:.spec.gatewayClassName
+          - READY:.status.conditions[?(@.type=='Programmed')].status
+          - ADDRESSES:.status.addresses[0].value|W
+          - AGE
+      gateway.networking.k8s.io/v1/httproutes:
+        columns:
+          - NAME
+          - NAMESPACE
+          - HOSTNAMES:.spec.hostnames[0]
+          - PARENT:.spec.parentRefs[0].name
+          - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
+          - AGE
+      gateway.networking.k8s.io/v1/grpcroutes:
+        columns:
+          - NAME
+          - NAMESPACE
+          - HOSTNAMES:.spec.hostnames[0]
+          - PARENT:.spec.parentRefs[0].name
+          - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
+          - AGE
+      gateway.networking.k8s.io/v1alpha2/tcproutes:
+        columns:
+          - NAME
+          - NAMESPACE
+          - PARENT:.spec.parentRefs[0].name
+          - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
+          - AGE
+      gateway.networking.k8s.io/v1alpha2/udproutes:
+        columns:
+          - NAME
+          - NAMESPACE
+          - PARENT:.spec.parentRefs[0].name
+          - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
+          - AGE
+      gateway.networking.k8s.io/v1alpha2/tlsroutes:
+        columns:
+          - NAME
+          - NAMESPACE
+          - HOSTNAMES:.spec.hostnames[0]
+          - PARENT:.spec.parentRefs[0].name
+          - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
+          - AGE
+      gateway.networking.k8s.io/v1beta1/referencegrants:
+        columns:
+          - NAME
+          - NAMESPACE
+          - FROM-NS:.spec.from[0].namespace
+          - FROM-KIND:.spec.from[0].kind
+          - TO-KIND:.spec.to[0].kind
+          - AGE
+      gateway.networking.k8s.io/v1alpha3/backendtlspolicies:
+        columns:
+          - NAME
+          - NAMESPACE
+          - TARGET:.spec.targetRefs[0].name
+          - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
+          - AGE
+
+      # K Gateway resources
+      gateway.kgateway.dev/v1alpha1/trafficpolicies:
+        columns:
+          - NAME
+          - NAMESPACE
+          - TARGET:.spec.targetRefs[0].name
+          - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
+          - AGE
+      gateway.kgateway.dev/v1alpha1/directresponses:
+        columns:
+          - NAME
+          - NAMESPACE
+          - STATUS:.spec.status
+          - AGE
+      gateway.kgateway.dev/v1alpha1/routeoptions:
+        columns:
+          - NAME
+          - NAMESPACE
+          - TARGET:.spec.targetRefs[0].name
+          - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
+          - AGE
+      gateway.kgateway.dev/v1alpha1/virtualhostoptions:
+        columns:
+          - NAME
+          - NAMESPACE
+          - TARGET:.spec.targetRefs[0].name
+          - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
+          - AGE
+      gateway.kgateway.dev/v1alpha1/listeneroptions:
+        columns:
+          - NAME
+          - NAMESPACE
+          - TARGET:.spec.targetRefs[0].name
+          - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
           - AGE
   '';
 }

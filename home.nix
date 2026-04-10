@@ -46,7 +46,7 @@
     btop
     cilium-cli
     cmctl
-    unstable.claude-code
+    claude-code
     cowsay
     curl
     direnv
