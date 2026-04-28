@@ -2,6 +2,9 @@
 {
   programs.chromium = {
     enable = true;
+    # TODO: replace manual extension + nativeMessagingHosts workaround once enablePlasmaBrowserIntegration
+    # lands in release-25.11 (https://github.com/nix-community/home-manager/issues/5412, PR #9161)
+    enablePlasmaBrowserIntegration = true;
     package = pkgs.chromium;
     commandLineArgs = [
       "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
@@ -21,14 +24,6 @@
       # uBlock Origin Lite
       # https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh
       "ddkjiahejlhfcafbddmgiahcphecmpfh"
-
-      # KDE Plasma Browser Integration
-      # https://chromewebstore.google.com/detail/plasma-integration/cimiefiiaegbelhefglklhhakcgmhkai
-      "cimiefiiaegbelhefglklhhakcgmhkai"
-
-    ];
-    nativeMessagingHosts = [
-      pkgs.kdePackages.plasma-browser-integration
     ];
   };
 }
