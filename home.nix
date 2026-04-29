@@ -73,6 +73,7 @@
     hcloud
     helm-docs
     htop
+    hugo
     iftop
     iotop
     ipcalc
@@ -100,6 +101,7 @@
     ldns
     lf
     libcap
+    unstable.librepods
     libva-utils
     lm_sensors
     lsof

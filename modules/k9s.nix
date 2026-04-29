@@ -876,7 +876,7 @@
       gateway.networking.k8s.io/v1/gateways:
         columns:
           - NAME
-          - NAMESPACE
+          - NAMESPACE:.metadata.namespace
           - CLASS:.spec.gatewayClassName
           - READY:.status.conditions[?(@.type=='Programmed')].status
           - ADDRESSES:.status.addresses[0].value|W
@@ -884,7 +884,7 @@
       gateway.networking.k8s.io/v1/httproutes:
         columns:
           - NAME
-          - NAMESPACE
+          - NAMESPACE:.metadata.namespace
           - HOSTNAMES:.spec.hostnames[0]
           - PARENT:.spec.parentRefs[0].name
           - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
@@ -892,7 +892,7 @@
       gateway.networking.k8s.io/v1/grpcroutes:
         columns:
           - NAME
-          - NAMESPACE
+          - NAMESPACE:.metadata.namespace
           - HOSTNAMES:.spec.hostnames[0]
           - PARENT:.spec.parentRefs[0].name
           - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
@@ -900,21 +900,21 @@
       gateway.networking.k8s.io/v1alpha2/tcproutes:
         columns:
           - NAME
-          - NAMESPACE
+          - NAMESPACE:.metadata.namespace
           - PARENT:.spec.parentRefs[0].name
           - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
           - AGE
       gateway.networking.k8s.io/v1alpha2/udproutes:
         columns:
           - NAME
-          - NAMESPACE
+          - NAMESPACE:.metadata.namespace
           - PARENT:.spec.parentRefs[0].name
           - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
           - AGE
       gateway.networking.k8s.io/v1alpha2/tlsroutes:
         columns:
           - NAME
-          - NAMESPACE
+          - NAMESPACE:.metadata.namespace
           - HOSTNAMES:.spec.hostnames[0]
           - PARENT:.spec.parentRefs[0].name
           - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
@@ -922,7 +922,7 @@
       gateway.networking.k8s.io/v1beta1/referencegrants:
         columns:
           - NAME
-          - NAMESPACE
+          - NAMESPACE:.metadata.namespace
           - FROM-NS:.spec.from[0].namespace
           - FROM-KIND:.spec.from[0].kind
           - TO-KIND:.spec.to[0].kind
@@ -930,7 +930,7 @@
       gateway.networking.k8s.io/v1alpha3/backendtlspolicies:
         columns:
           - NAME
-          - NAMESPACE
+          - NAMESPACE:.metadata.namespace
           - TARGET:.spec.targetRefs[0].name
           - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
           - AGE
@@ -939,36 +939,36 @@
       gateway.kgateway.dev/v1alpha1/trafficpolicies:
         columns:
           - NAME
-          - NAMESPACE
+          - NAMESPACE:.metadata.namespace
           - TARGET:.spec.targetRefs[0].name
           - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
-          - AGE
+          - AGE:.metadata.creationTimestamp|T
       gateway.kgateway.dev/v1alpha1/directresponses:
         columns:
           - NAME
-          - NAMESPACE
+          - NAMESPACE:.metadata.namespace
           - STATUS:.spec.status
-          - AGE
+          - AGE:.metadata.creationTimestamp|T
       gateway.kgateway.dev/v1alpha1/routeoptions:
         columns:
           - NAME
-          - NAMESPACE
+          - NAMESPACE:.metadata.namespace
           - TARGET:.spec.targetRefs[0].name
           - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
-          - AGE
+          - AGE:.metadata.creationTimestamp|T
       gateway.kgateway.dev/v1alpha1/virtualhostoptions:
         columns:
           - NAME
-          - NAMESPACE
+          - NAMESPACE:.metadata.namespace
           - TARGET:.spec.targetRefs[0].name
           - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
-          - AGE
+          - AGE:.metadata.creationTimestamp|T
       gateway.kgateway.dev/v1alpha1/listeneroptions:
         columns:
           - NAME
-          - NAMESPACE
+          - NAMESPACE:.metadata.namespace
           - TARGET:.spec.targetRefs[0].name
           - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
-          - AGE
+          - AGE:.metadata.creationTimestamp|T
   '';
 }
