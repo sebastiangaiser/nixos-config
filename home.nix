@@ -45,6 +45,7 @@
       ];
     })
     age
+    amdgpu_top
     bats
     bitwarden-cli
     bitwarden-desktop
@@ -65,15 +66,18 @@
     gawk
     gcc
     gh
+    git-absorb
     glab
     gnumake
     gnupg
     gnused
     gnutar
     go
+    go-jsonnet
     go-task
     gofumpt
-    golangci-lint
+    gojsontoyaml
+    unstable.golangci-lint
     gopls
     hcloud
     helm-docs
@@ -96,6 +100,7 @@
     kitty
     kitty-themes
     ko
+    kubebuilder
     kubectl
     kubectl-cnpg
     kubectl-neat

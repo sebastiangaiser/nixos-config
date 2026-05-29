@@ -27,6 +27,12 @@
     };
   };
 
+  services.resolved = {
+    enable = true;
+    # dnssec = "false";
+    llmnr = "false";
+  };
+
   time.timeZone = "Europe/Berlin";
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -60,7 +66,10 @@
   services.printing.enable = true;
 
   # Enable bluetooth
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
 
   hardware.graphics = {
     enable = true;
