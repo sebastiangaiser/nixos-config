@@ -74,9 +74,9 @@
     # ── Extra packages for formatters ────────────────────────────────────
     extraPackages = with pkgs; [
       gotools     # provides goimports
-      nodePackages.prettier
+      prettier
       shfmt
-      nixfmt-rfc-style
+      nixfmt
     ];
   };
 }

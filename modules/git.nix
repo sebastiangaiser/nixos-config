@@ -28,6 +28,7 @@
     };
     attributes = [
       "**/*.sops.y?ml diff=sopsdiffer"
+      "**/*.secret.y?ml diff=sopsdiffer"
     ];
     ignores = [
       ".vscode/"

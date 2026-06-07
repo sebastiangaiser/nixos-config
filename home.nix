@@ -121,7 +121,7 @@
     mtr
     nix-direnv
     nix-output-monitor
-    nixfmt-rfc-style
+    nixfmt
     nmap
     nvd
     openssl
@@ -168,7 +168,7 @@
   home = {
     username = "sebastian";
     homeDirectory = "/home/sebastian";
-    stateVersion = "25.11";
+    stateVersion = "26.05";
   };
   programs.home-manager.enable = true;
 }
