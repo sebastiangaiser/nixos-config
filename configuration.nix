@@ -29,8 +29,8 @@
 
   services.resolved = {
     enable = true;
-    # dnssec = "false";
-    llmnr = "false";
+    # settings.Resolve.DNSSEC = "false";
+    settings.Resolve.LLMNR = "false";
   };
 
   time.timeZone = "Europe/Berlin";
