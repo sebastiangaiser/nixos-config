@@ -34,10 +34,6 @@
       '';
       flavor = "mocha";
     };
-    vscode.profiles.default = {
-      enable = true;
-      flavor = "mocha";
-    };
     zsh-syntax-highlighting = {
       enable = true;
       flavor = "mocha";

@@ -112,6 +112,7 @@
       # cert-manager
       cert-status = {
         shortCut = "Shift-S";
+        override = true;
         confirm = false;
         description = "Certificate status";
         scopes = [ "certificates" ];
@@ -185,6 +186,7 @@
       };
       suspend-terraform = {
         shortCut = "Shift-S";
+        override = true;
         confirm = false;
         description = "Suspend a Terraform";
         scopes = [ "terraforms" ];
@@ -256,6 +258,7 @@
       };
       suspend-gitrepository = {
         shortCut = "Shift-S";
+        override = true;
         confirm = false;
         description = "Suspend a GitRepository";
         scopes = [ "gitrepositories" ];
@@ -317,6 +320,7 @@
       };
       suspend-helmrepository = {
         shortCut = "Shift-S";
+        override = true;
         confirm = false;
         description = "Suspend a HelmRepository";
         scopes = [ "helmrepositories" ];
@@ -377,6 +381,7 @@
       };
       suspend-helmrelease = {
         shortCut = "Shift-S";
+        override = true;
         confirm = false;
         description = "Suspend a HelmRelease";
         scopes = [ "helmreleases" ];
@@ -434,6 +439,7 @@
       };
       suspend-kustomization = {
         shortCut = "Shift-S";
+        override = true;
         confirm = false;
         description = "Suspend a Kustomization";
         scopes = [ "kustomizations" ];
@@ -492,6 +498,7 @@
       };
       suspend-ocirepository = {
         shortCut = "Shift-S";
+        override = true;
         confirm = false;
         description = "Suspend an OCIRepository";
         scopes = [ "ocirepositories" ];
@@ -724,6 +731,7 @@
       };
       cnpg-status-verbose = {
         shortCut = "Shift-S";
+        override = true;
         description = "Status (verbose)";
         scopes = [ "cluster" ];
         command = "bash";

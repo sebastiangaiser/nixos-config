@@ -21,11 +21,17 @@
       enable = true;
       dockerCompat = true;
     };
+    containers.containersConf.settings = {
+      network = {
+        default_rootless_network_cmd = "slirp4netns";
+      };
+    };
   };
 
   environment.systemPackages = with pkgs; [
     docker-buildx
     kind
+    podman-compose
   ];
 
   services.dockerRegistry = {

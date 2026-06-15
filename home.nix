@@ -22,7 +22,6 @@
     ./modules/plasma.nix
     ./modules/ssh.nix
     ./modules/tmux.nix
-    ./modules/vscode.nix
     ./modules/zsh.nix
   ];
 
@@ -48,13 +47,13 @@
     amdgpu_top
     bats
     bitwarden-cli
-    bitwarden-desktop
     btop
     cilium-cli
     cmctl
     claude-code
     cowsay
     curl
+    dart-sass
     direnv
     dmidecode
     dnsutils
