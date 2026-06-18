@@ -26,6 +26,10 @@
       # https://chromewebstore.google.com/detail/plasma-integration/cimiefiiaegbelhefglklhhakcgmhkai
       "cimiefiiaegbelhefglklhhakcgmhkai"
 
+      # Tampermonkey
+      # https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo
+      "dhdgffkkebhmkfjojejmpbldmpobfkfo"
+
     ];
     nativeMessagingHosts = [
       pkgs.kdePackages.plasma-browser-integration

@@ -19,6 +19,11 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/plasma-integration/latest.xpi";
         };
+        # Tampermonkey
+        "firefox@tampermonkey.net" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi";
+        };
       };
     };
     profiles.default = {
