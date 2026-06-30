@@ -27,11 +27,6 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    # Suppress cosmetic Qt portal error: "Failed to register with host portal ...App info not found for 'org.kde.'"
-    # Fixed upstream in xdg-desktop-portal-kde: https://bugs.kde.org/show_bug.cgi?id=512650
-    # TODO: Remove once fix lands in nixpkgs in Plasma 6.6
-    # Check with plasmashell --version
-    QT_NO_XDG_DESKTOP_PORTAL = "1";
   };
 
   home.packages = with pkgs; [
