@@ -29,6 +29,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    # Private work-specific config — internal hostnames/identifiers live here,
+    # out of this public repo. Local path input (flake = false: plain .nix
+    # files), so nothing is fetched over the network and the real host names
+    # never land in this repo or its lock file.
+    work = {
+      url = "path:/home/sebastian/nixos-config-work";
+      flake = false;
+    };
   };
 
   outputs =
@@ -43,6 +52,7 @@
       plasma-manager,
       home-manager,
       nixos-hardware,
+      work,
       ...
     }:
     {
@@ -70,6 +80,8 @@
                       };
                     })
                     catppuccin.homeModules.catppuccin
+                    # Private work-specific config (see the `work` flake input).
+                    "${work}/work.nix"
                   ];
                 };
               };

@@ -46,7 +46,7 @@
       v = "velero";
 
       # Nix related
-      rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#framework13 && show-changes";
+      rebuild = "nix flake update work --flake ~/nixos-config && sudo nixos-rebuild switch --flake ~/nixos-config#framework13 && show-changes";
       update = "nix flake update --flake ~/nixos-config --impure && rebuild";
       cleanup = "sudo nix store optimise && sudo nix-collect-garbage -d";
       pm-reset = "rm ~/.local/share/plasma-manager/last_run_* && ~/.local/share/plasma-manager/run_all.sh";
