@@ -16,6 +16,7 @@
     ./modules/fonts.nix
     ./modules/ghostty.nix
     ./modules/git.nix
+    ./modules/gitrocket.nix
     ./modules/k9s.nix
     ./modules/kitty.nix
     ./modules/neovim.nix

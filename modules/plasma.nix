@@ -232,4 +232,12 @@
     Exec=spotify
     X-KDE-autostart-condition=ksmserver
   '';
+
+  xdg.configFile."autostart/librepods.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=LibrePods
+    Exec=librepods --hide
+    X-KDE-autostart-condition=ksmserver
+  '';
 }

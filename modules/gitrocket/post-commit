@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# gitrocket — launch a rocket into your terminal on every commit. 🚀
+#
+# Installed globally via ~/nixos-config (git's init.templateDir), so every
+# repo you `git init`/`git clone` from now on gets it in .git/hooks/post-commit.
+# Skip a single run with GITROCKET_DISABLE=1 git commit ...
+
+# Only animate for interactive terminals — never in scripts, CI, or piped output.
+[ -t 1 ] || exit 0
+[ -n "${GITROCKET_DISABLE:-}" ] && exit 0
+
+pad='    '        # left margin so the rocket isn't glued to the edge
+height=8          # how many rows the rocket climbs
+dots=('*' ':' '.')       # exhaust trail, nearest to farthest
+trail=(214 208 202)      # orange → dark, matching the trail chars
+hulls=(196 202 208 214 220 226 82 51 45 201)   # rainbow rocket per frame
+
+# Bail out gracefully on tiny terminals: no room to launch, so just cheer.
+rows=$(tput lines 2>/dev/null || echo 24)
+if [ "$rows" -lt $((height + 2)) ]; then
+  printf '%s\033[38;5;220m🚀 liftoff!\033[0m\n' "$pad"
+  exit 0
+fi
+
+cleanup() { printf '\033[0m\n'; tput cnorm 2>/dev/null; }
+trap cleanup EXIT
+tput civis 2>/dev/null   # hide cursor during the launch
+
+# Reserve the launch pad (one scroll), then park the cursor at its top-left.
+for ((k = 0; k < height; k++)); do printf '\n'; done
+printf '\033[%dA' "$height"
+
+for ((i = 0; i < height; i++)); do
+  r=$((height - 1 - i))                 # rocket row: climbs from bottom to top
+  hull=${hulls[$((i % ${#hulls[@]}))]}
+
+  # Redraw the whole pad in place. No '\n' is emitted, so the terminal never
+  # scrolls after the initial reservation — cursor moves are all relative.
+  for ((row = 0; row < height; row++)); do
+    printf '\r\033[2K'                  # carriage return + clear this line
+    if ((row == r)); then
+      printf '%s\033[1;38;5;%dm🚀\033[0m' "$pad" "$hull"
+    elif ((row > r && row - r <= ${#dots[@]})); then
+      d=$((row - r - 1))
+      printf '%s \033[38;5;%dm%s\033[0m' "$pad" "${trail[d]}" "${dots[d]}"
+    fi
+    ((row < height - 1)) && printf '\033[B'   # move down one row (no scroll)
+  done
+  printf '\r\033[%dA' "$((height - 1))" # back to the top of the pad
+  sleep 0.07
+done
+
+printf '\r\033[J'                       # wipe the pad clean
+printf '%s\033[1;38;5;220m🚀  liftoff!\033[0m' "$pad"
