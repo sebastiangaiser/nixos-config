@@ -778,7 +778,7 @@
           - READY:.status.conditions[?(@.type=='Ready')].status
           - CHART:.spec.chart.spec.chart
           - VERSION:.spec.chart.spec.version
-          - REVISION:.status.lastAppliedRevision|W
+          - REVISION:.status.history[0].chartVersion|W
           - AGE
       kustomize.toolkit.fluxcd.io/v1/kustomizations:
         columns:
@@ -843,7 +843,7 @@
           - NAME
           - NAMESPACE
           - READY:.status.conditions[?(@.type=='Ready')].status
-          - URL:.status.url
+          - URL:.status.artifact.url
           - REVISION:.status.artifact.revision|W
           - AGE
 
@@ -853,7 +853,6 @@
           - NAME
           - NAMESPACE
           - SUSPEND:.spec.suspend
-          - READY:.status.conditions[?(@.type=='Ready')].status
           - PROVIDER:.spec.providerRef.name
           - SEVERITY:.spec.eventSeverity
           - AGE
@@ -862,7 +861,6 @@
           - NAME
           - NAMESPACE
           - SUSPEND:.spec.suspend
-          - READY:.status.conditions[?(@.type=='Ready')].status
           - TYPE:.spec.type
           - AGE
       notification.toolkit.fluxcd.io/v1/receivers:
@@ -894,7 +892,10 @@
           - NAME
           - NAMESPACE:.metadata.namespace
           - HOSTNAMES:.spec.hostnames[0]
-          - PARENT:.spec.parentRefs[0].name
+          - PARENT-KIND:.spec.parentRefs[*].kind|W
+          - PARENT:.spec.parentRefs[*].name
+          - PARENT-NS:.spec.parentRefs[*].namespace
+          - LISTENER:.spec.parentRefs[*].sectionName
           - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
           - AGE
       gateway.networking.k8s.io/v1/grpcroutes:
@@ -902,29 +903,41 @@
           - NAME
           - NAMESPACE:.metadata.namespace
           - HOSTNAMES:.spec.hostnames[0]
-          - PARENT:.spec.parentRefs[0].name
+          - PARENT-KIND:.spec.parentRefs[*].kind|W
+          - PARENT:.spec.parentRefs[*].name
+          - PARENT-NS:.spec.parentRefs[*].namespace
+          - LISTENER:.spec.parentRefs[*].sectionName
           - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
           - AGE
-      gateway.networking.k8s.io/v1alpha2/tcproutes:
+      gateway.networking.k8s.io/v1/tcproutes:
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
-          - PARENT:.spec.parentRefs[0].name
+          - PARENT-KIND:.spec.parentRefs[*].kind|W
+          - PARENT:.spec.parentRefs[*].name
+          - PARENT-NS:.spec.parentRefs[*].namespace
+          - LISTENER:.spec.parentRefs[*].sectionName
           - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
           - AGE
-      gateway.networking.k8s.io/v1alpha2/udproutes:
+      gateway.networking.k8s.io/v1/udproutes:
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
-          - PARENT:.spec.parentRefs[0].name
+          - PARENT-KIND:.spec.parentRefs[*].kind|W
+          - PARENT:.spec.parentRefs[*].name
+          - PARENT-NS:.spec.parentRefs[*].namespace
+          - LISTENER:.spec.parentRefs[*].sectionName
           - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
           - AGE
-      gateway.networking.k8s.io/v1alpha2/tlsroutes:
+      gateway.networking.k8s.io/v1/tlsroutes:
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
           - HOSTNAMES:.spec.hostnames[0]
-          - PARENT:.spec.parentRefs[0].name
+          - PARENT-KIND:.spec.parentRefs[*].kind|W
+          - PARENT:.spec.parentRefs[*].name
+          - PARENT-NS:.spec.parentRefs[*].namespace
+          - LISTENER:.spec.parentRefs[*].sectionName
           - ACCEPTED:.status.parents[0].conditions[?(@.type=='Accepted')].status
           - AGE
       gateway.networking.k8s.io/v1beta1/referencegrants:
@@ -939,7 +952,9 @@
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
-          - TARGET:.spec.targetRefs[0].name
+          - TARGET-KIND:.spec.targetRefs[*].kind|W
+          - TARGET:.spec.targetRefs[*].name
+          - SECTION:.spec.targetRefs[*].sectionName
           - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
           - AGE
 
@@ -948,7 +963,9 @@
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
-          - TARGET:.spec.targetRefs[0].name
+          - TARGET-KIND:.spec.targetRefs[*].kind|W
+          - TARGET:.spec.targetRefs[*].name
+          - SECTION:.spec.targetRefs[*].sectionName
           - ACCEPTED:.status.ancestors[0].conditions[?(@.type=='Accepted')].status
           - AGE:.metadata.creationTimestamp|T
       gateway.kgateway.dev/v1alpha1/directresponses:
@@ -968,21 +985,25 @@
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
-          - TARGET:.spec.targetRefs[0].name
+          - TARGET-KIND:.spec.targetRefs[*].kind|W
+          - TARGET:.spec.targetRefs[*].name
           - ACCEPTED:.status.ancestors[0].conditions[?(@.type=='Accepted')].status
           - AGE:.metadata.creationTimestamp|T
       gateway.kgateway.dev/v1alpha1/httplistenerpolicies:
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
-          - TARGET:.spec.targetRefs[0].name
+          - TARGET-KIND:.spec.targetRefs[*].kind|W
+          - TARGET:.spec.targetRefs[*].name
           - ACCEPTED:.status.ancestors[0].conditions[?(@.type=='Accepted')].status
           - AGE:.metadata.creationTimestamp|T
       gateway.kgateway.dev/v1alpha1/listenerpolicies:
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
-          - TARGET:.spec.targetRefs[0].name
+          - TARGET-KIND:.spec.targetRefs[*].kind|W
+          - TARGET:.spec.targetRefs[*].name
+          - SECTION:.spec.targetRefs[*].sectionName
           - ACCEPTED:.status.ancestors[0].conditions[?(@.type=='Accepted')].status
           - AGE:.metadata.creationTimestamp|T
       gateway.kgateway.dev/v1alpha1/gatewayextensions:
