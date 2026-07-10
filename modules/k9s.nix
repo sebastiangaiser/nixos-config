@@ -949,7 +949,7 @@
           - NAME
           - NAMESPACE:.metadata.namespace
           - TARGET:.spec.targetRefs[0].name
-          - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
+          - ACCEPTED:.status.ancestors[0].conditions[?(@.type=='Accepted')].status
           - AGE:.metadata.creationTimestamp|T
       gateway.kgateway.dev/v1alpha1/directresponses:
         columns:
@@ -957,26 +957,45 @@
           - NAMESPACE:.metadata.namespace
           - STATUS:.spec.status
           - AGE:.metadata.creationTimestamp|T
-      gateway.kgateway.dev/v1alpha1/routeoptions:
+      gateway.kgateway.dev/v1alpha1/backends:
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
-          - TARGET:.spec.targetRefs[0].name
+          - TYPE:.spec.type
           - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
           - AGE:.metadata.creationTimestamp|T
-      gateway.kgateway.dev/v1alpha1/virtualhostoptions:
+      gateway.kgateway.dev/v1alpha1/backendconfigpolicies:
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
           - TARGET:.spec.targetRefs[0].name
+          - ACCEPTED:.status.ancestors[0].conditions[?(@.type=='Accepted')].status
+          - AGE:.metadata.creationTimestamp|T
+      gateway.kgateway.dev/v1alpha1/httplistenerpolicies:
+        columns:
+          - NAME
+          - NAMESPACE:.metadata.namespace
+          - TARGET:.spec.targetRefs[0].name
+          - ACCEPTED:.status.ancestors[0].conditions[?(@.type=='Accepted')].status
+          - AGE:.metadata.creationTimestamp|T
+      gateway.kgateway.dev/v1alpha1/listenerpolicies:
+        columns:
+          - NAME
+          - NAMESPACE:.metadata.namespace
+          - TARGET:.spec.targetRefs[0].name
+          - ACCEPTED:.status.ancestors[0].conditions[?(@.type=='Accepted')].status
+          - AGE:.metadata.creationTimestamp|T
+      gateway.kgateway.dev/v1alpha1/gatewayextensions:
+        columns:
+          - NAME
+          - NAMESPACE:.metadata.namespace
+          - TYPE:.spec.type
           - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
           - AGE:.metadata.creationTimestamp|T
-      gateway.kgateway.dev/v1alpha1/listeneroptions:
+      gateway.kgateway.dev/v1alpha1/gatewayparameters:
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
-          - TARGET:.spec.targetRefs[0].name
-          - ACCEPTED:.status.conditions[?(@.type=='Accepted')].status
           - AGE:.metadata.creationTimestamp|T
   '';
 }

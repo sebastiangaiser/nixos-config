@@ -127,7 +127,6 @@
     pre-commit
     pv-migrate
     ripgrep
-    rocketchat-desktop
     shellcheck
     signal-desktop
     socat
