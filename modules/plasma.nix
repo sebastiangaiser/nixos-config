@@ -182,6 +182,9 @@
 
     powerdevil = {
       AC = {
+        # On AC keep the balanced profile so full performance is available
+        # (e.g. for rebuilds); the battery profile drops to power-saver.
+        powerProfile = "balanced";
         powerButtonAction = "lockScreen";
         autoSuspend = {
           action = "sleep";
@@ -193,6 +196,7 @@
         };
       };
       battery = {
+        powerProfile = "powerSaving";
         powerButtonAction = "sleep";
         whenSleepingEnter = "standbyThenHibernate";
       };

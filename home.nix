@@ -1,5 +1,5 @@
 # https://nix-community.github.io/home-manager/options.xhtml
-{unstable}: {
+{unstable, herdr}: {
   config,
   pkgs,
   lib,
@@ -76,6 +76,7 @@
     gopls
     hcloud
     helm-docs
+    herdr
     htop
     hugo
     iftop

@@ -13,8 +13,8 @@
       systemd-boot.configurationLimit = 10;
     };
     kernelPackages = pkgs.linuxPackages_latest;
-    # Enable AMD P-State EPP for efficient CPU frequency scaling on Ryzen AI 300
-    kernelParams = [ "amd_pstate=active" ];
+    # Kernel params for this machine (amd_pstate=active, amdgpu.dcdebugmask=0x10)
+    # come from the nixos-hardware framework-amd-ai-300-series module.
   };
 
   networking = {
