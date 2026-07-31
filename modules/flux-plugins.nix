@@ -1,10 +1,11 @@
 # Flux CLI plugins — https://github.com/fluxcd/plugins
 #
-# Flux discovers `flux-<name>` binaries in the directory named by the
-# FLUXCD_PLUGINS env var (default ~/.fluxcd/plugins) and exposes each as a
-# `flux <name>` sub-command. Rather than the imperative `flux plugin install`
+# Flux discovers `flux-<name>` binaries in ~/.fluxcd/plugins and exposes each as
+# a `flux <name>` sub-command. Rather than the imperative `flux plugin install`
 # (which downloads OCI artifacts into $HOME at runtime), we fetch the release
-# binaries with Nix and point FLUXCD_PLUGINS at a read-only store directory.
+# binaries with Nix and symlink them into that directory with home.file. This
+# needs no FLUXCD_PLUGINS env var, so it works in every shell regardless of
+# whether home.sessionVariables get sourced.
 #
 # Versions and hashes are pinned in ./flux-plugins.json — Nix evaluation stays
 # pure (no network), so `nixos-rebuild` remains reproducible. To pull the
@@ -14,7 +15,7 @@
 #
 # Notes on the Nix-managed approach:
 #   * `flux plugin list` shows the plugins as "manual" (no install receipt).
-#   * `flux plugin update` leaves them untouched — Nix owns the store dir.
+#   * `flux plugin update` leaves them untouched — Nix owns the symlinks.
 {
   pkgs,
   lib,
@@ -32,6 +33,7 @@ let
     .${pkgs.stdenv.hostPlatform.system}
       or (throw "flux-plugins: unsupported system ${pkgs.stdenv.hostPlatform.system}");
 
+  # name -> derivation whose root holds the single `flux-<name>` binary.
   fetchFluxPlugin =
     name: pin:
     pkgs.runCommandLocal "${name}-${pin.version}" {
@@ -44,11 +46,7 @@ let
       tar -C "$out" -xzf "$src" ${name}
     '';
 
-  # Merge the individual plugin binaries into one directory for FLUXCD_PLUGINS.
-  flux-plugins-dir = pkgs.symlinkJoin {
-    name = "flux-plugins";
-    paths = lib.mapAttrsToList fetchFluxPlugin pins;
-  };
+  fetched = lib.mapAttrs fetchFluxPlugin pins;
 
   # Refreshes ./flux-plugins.json to the latest GitHub releases. Run from
   # anywhere inside the repo, then rebuild. Honours $GITHUB_TOKEN to dodge the
@@ -93,6 +91,10 @@ let
   };
 in
 {
-  home.sessionVariables.FLUXCD_PLUGINS = "${flux-plugins-dir}";
+  # Symlink each plugin binary into flux's default discovery directory.
+  home.file = lib.mapAttrs' (
+    name: drv: lib.nameValuePair ".fluxcd/plugins/${name}" { source = "${drv}/${name}"; }
+  ) fetched;
+
   home.packages = [ update-flux-plugins ];
 }
