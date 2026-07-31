@@ -63,7 +63,17 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.hplip ];
+  };
+
+  # Discover network printers (AirPrint/IPP/Bonjour) via mDNS
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Enable bluetooth
   hardware.bluetooth = {

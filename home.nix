@@ -13,6 +13,7 @@
     ./modules/chromium.nix
     ./modules/direnv.nix
     ./modules/firefox.nix
+    ./modules/flux-plugins.nix
     ./modules/fonts.nix
     ./modules/ghostty.nix
     ./modules/git.nix

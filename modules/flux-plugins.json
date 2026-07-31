@@ -1,0 +1,18 @@
+{
+  "flux-operator": {
+    "repo": "controlplaneio-fluxcd/flux-operator",
+    "version": "0.57.0",
+    "hashes": {
+      "linux_amd64": "sha256-q9cF0ncpEsSCN5EDFj35U3tIKDJtKb4RTsHaHL96gbM=",
+      "linux_arm64": "sha256-rCrEe1XcQkWauN5x3bHoaHWX6AMg27pDrOXZkE8hnR0="
+    }
+  },
+  "flux-schema": {
+    "repo": "fluxcd/flux-schema",
+    "version": "0.11.0",
+    "hashes": {
+      "linux_amd64": "sha256-8gipnoKcW7HfGuKQQ4Fhp7w84dLKrZSaipwJv7Kklqw=",
+      "linux_arm64": "sha256-YCMl0nsDar10wWbIV3BaV4M4vy0eragZKKwxkuOhQK4="
+    }
+  }
+}
