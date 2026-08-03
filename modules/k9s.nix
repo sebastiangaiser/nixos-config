@@ -891,7 +891,7 @@
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
-          - HOSTNAMES:.spec.hostnames[0]
+          - HOSTNAMES:.spec.hostnames[*]
           - PARENT-KIND:.spec.parentRefs[*].kind|W
           - PARENT:.spec.parentRefs[*].name
           - PARENT-NS:.spec.parentRefs[*].namespace
@@ -902,7 +902,7 @@
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
-          - HOSTNAMES:.spec.hostnames[0]
+          - HOSTNAMES:.spec.hostnames[*]
           - PARENT-KIND:.spec.parentRefs[*].kind|W
           - PARENT:.spec.parentRefs[*].name
           - PARENT-NS:.spec.parentRefs[*].namespace
@@ -933,7 +933,7 @@
         columns:
           - NAME
           - NAMESPACE:.metadata.namespace
-          - HOSTNAMES:.spec.hostnames[0]
+          - HOSTNAMES:.spec.hostnames[*]
           - PARENT-KIND:.spec.parentRefs[*].kind|W
           - PARENT:.spec.parentRefs[*].name
           - PARENT-NS:.spec.parentRefs[*].namespace
