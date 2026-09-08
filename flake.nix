@@ -32,13 +32,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    # Terminal multiplexer for AI coding agents (https://herdr.dev).
-    # Not in nixpkgs; upstream ships its own flake.
-    herdr = {
-      url = "github:ogulcancelik/herdr";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     # Private work-specific config — internal hostnames/identifiers live here,
     # out of this public repo. Local path input (flake = false: plain .nix
     # files), so nothing is fetched over the network and the real host names
@@ -60,7 +53,6 @@
       plasma-manager,
       home-manager,
       nixos-hardware,
-      herdr,
       work,
       ...
     }:
@@ -87,7 +79,6 @@
                         inherit system;
                         config.allowUnfree = true;
                       };
-                      herdr = herdr.packages.${system}.default;
                     })
                     catppuccin.homeModules.catppuccin
                     # Private work-specific config (see the `work` flake input).

@@ -1,5 +1,5 @@
 # https://nix-community.github.io/home-manager/options.xhtml
-{unstable, herdr}: {
+{unstable}: {
   config,
   pkgs,
   lib,
@@ -24,6 +24,7 @@
     ./modules/plasma.nix
     ./modules/ssh.nix
     ./modules/tmux.nix
+    ./modules/topf.nix
     ./modules/zsh.nix
   ];
 
@@ -77,7 +78,6 @@
     gopls
     hcloud
     helm-docs
-    herdr
     htop
     hugo
     iftop
@@ -137,7 +137,6 @@
     stern
     strace
     sysstat
-    unstable.talhelper
     talosctl
     telegram-desktop
     thunderbird
