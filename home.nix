@@ -1,5 +1,6 @@
 # https://nix-community.github.io/home-manager/options.xhtml
-{unstable}: {
+{ unstable }:
+{
   config,
   pkgs,
   lib,
@@ -137,7 +138,7 @@
     stern
     strace
     sysstat
-    talosctl
+    unstable.talosctl
     telegram-desktop
     thunderbird
     tmate
