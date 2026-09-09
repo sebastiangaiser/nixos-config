@@ -4,7 +4,6 @@
     enable = true;
     package = pkgs.chromium;
     commandLineArgs = [
-      "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
       "--enable-gpu-rasterization"
       "--enable-zero-copy"
       "--ignore-gpu-blocklist"
