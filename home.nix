@@ -49,7 +49,7 @@
     btop
     cilium-cli
     cmctl
-    claude-code
+    unstable.claude-code
     cowsay
     curl
     dart-sass
@@ -141,7 +141,6 @@
     unstable.talosctl
     telegram-desktop
     thunderbird
-    tmate
     tmux
     tree
     unstable.fluxcd
