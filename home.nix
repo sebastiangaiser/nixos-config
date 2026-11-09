@@ -122,7 +122,6 @@
     nixfmt
     nmap
     nvd
-    opencode
     openssl
     openvpn
     papirus-icon-theme
