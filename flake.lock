@@ -212,8 +212,8 @@
     "work": {
       "flake": false,
       "locked": {
-        "lastModified": 1794231279,
-        "narHash": "sha256-1J0FXtX+gYWJigRuzoCAgyqPyxJedQih3jKC/L2N8tU=",
+        "lastModified": 1794240239,
+        "narHash": "sha256-zJ9N0g4OCmKd/mhiHaXKXaUt0Wh7bc0xAfkAE68gS0M=",
         "path": "/home/sebastian/nixos-config-work",
         "type": "path"
       },
