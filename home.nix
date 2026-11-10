@@ -150,6 +150,7 @@
     usbutils
     wget
     which
+    wl-clipboard
     xclip
     xz
     yq-go
